@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxVolume</title>
+    <link rel="stylesheet" href="./src/styles/header.css">
+    <link rel="stylesheet" href="./src/styles/const.css">
+    <link rel="stylesheet" href="./src/styles/player.css">
+    <link rel="stylesheet" href="./src/styles/mainpage.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="head_back">
+        <div class="header centered">
+            <button  class="logo">
+                <img src="src/img/Kraken_logo.jpeg" alt="">
+            </button>
+            <button class="head_button_left">
+                <p>Главная</p>
+            </button>                
+            <button class="head_button_left">
+                <p>Новинки</p>
+            </button>
+            <div class="search">
+                <input type="text" placeholder="Поиск..."/>
+                <button>
+                    <img src="src/img/search.png" alt=""/>
+                </button>
+            </div>       
+            <button class="head_button_right">
+                <p>Библиотека</p>
+            </button>
+            <button class="head_button_right profile">
+                <div class="profile_pic">
+                    <img src="src/img/Kraken_logo.jpeg" alt="">
+                </div>
+                <p>Имя профиля</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="auth">
+        <button>
+            <img src="src/img/Kraken_logo.jpeg" alt="">
+            <p>Профиль</p>
+        </button>
+        <button>
+            <img src="src/img/Kraken_logo.jpeg" alt="">
+            <p>Лайки</p>
+        </button>
+        <button>
+            <img src="src/img/Kraken_logo.jpeg" alt="">
+            <p>Плейлисты</p>
+        </button>
+        <button>
+            <img src="src/img/Kraken_logo.jpeg" alt="">
+            <p>Подписки</p>
+        </button>
+    </div>
+
+    <div class="centered">
+        <div class="main">
+            <div class="ad">
+                <a href="https://службапоконтракту.рф/">
+                    <img src="src/img/svo.jpg" alt="">
+                </a>
+            </div>
+            <img src="src/img/bebra.png" alt="">
+            <img src="src/img/bebra.png" alt="">
+        </div>
+    </div>
+    
+    <div class="inv">
+        <div class='centered'>
+            <div class="player">
+                <div class="side_button">
+                    <button class="player_button">
+                        <img src={prev} alt=""/>
+                    </button>
+                    <button class="player_button">
+                        <img src={play} alt=""/>
+                    </button>
+                    <button class="player_button">
+                        <img src={pause} alt=""/>
+                    </button>
+                    <button class="player_button">
+                    <img src={next} alt=""/>
+                    </button>
+
+                    <button class="player_button">
+                        <img src={repeat} alt=""/>
+                    </button>
+                    <button class="player_button">
+                        <img src={shuffle} alt=""/>
+                    </button>
+                </div>
+                <div class="button_mid">
+                    <p class="time">--:--</p>
+                    <input type="range" min="0" max="" />
+                    <p class="time">--:--</p>
+                </div>
+                <div class="side_button">
+                    <button class="player_button">
+                        <img src={volume} alt=""/>
+                    </button>
+                    <button class="player_button">
+                        <img src={like} alt=""/>
+                    </button>
+                    <div class="trackinfo">
+                        <img src={logo} alt=""/>
+                        <img src='src/img/Kraken_logo.jpeg' alt=""/>
+                        <div class='ti_text'>
+                            <p class='track_name'>Название трека</p>
+                            <p class='track_author'>Автор</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
