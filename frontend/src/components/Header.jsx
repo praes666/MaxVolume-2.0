@@ -4,7 +4,7 @@ import empty_profile from '../img/empty_profile.png'
 
 import { useState } from 'react'
 
-import Auth from './auth'
+import Auth from './Auth'
 
 export default function Header() {
 	const isAuth = false

@@ -1,14 +1,8 @@
-const mongoose = require('mongoose')
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./users.db');
 
-const connectDB = async () => {
-    try{
-        await mongoose.connect('mongodb://localhost:27017/authapp')
-        console.log('Mongoose connected')
-    }
-    catch(error){
-        console.error(error);
-        process.exit(1);
-    }
-}
+db.serialize(() => {
+    db.run("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, username TEXT UNIQUE, email TEXT UNIQUE, password TEXT)");
+});
 
-module.exports = connectDB
+module.exports = db;
