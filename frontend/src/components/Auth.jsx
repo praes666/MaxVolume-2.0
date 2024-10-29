@@ -1,18 +1,34 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 export default function Auth(){
-    const [isLogin, setLogin] = useState(true)
+    const [isLoginShow, setLoginShow] = useState(true)
+    const [regData, setRegData] = useState({username: '', email: '', password: ''})
+
+
+    const handleRegChange = (e) => {
+        setRegData({...regData, [e.target.name]: e.target.value})
+    }
+
+    const handleRegSubmit = async () => {
+        try{
+            const response = await axios.post('http://localhost:5000/api/auth/reg')
+            alert(response.data.message)
+        } catch(error){
+            alert('Ошибка регистрации: ', error)
+        }
+    }
 
     const loginSwitch = () => {
-		if(isLogin){setLogin(false)}
-		else{setLogin(true)}
+		if(isLoginShow){setLoginShow(false)}
+		else{setLoginShow(true)}
 	}
 
     return(
-        isLogin ? (
+        isLoginShow ? (
             <div className='reg'>
-                <input type="text" name="" id="" placeholder="Логин"/>
-                <input type="text" name="" id="" placeholder="Пароль"/>
+                <input type="text" name="" placeholder="Логин"/>
+                <input type="text" name="" placeholder="Пароль"/>
                 <button className='reg_button'>
                     <p>Войти</p>
                 </button>
@@ -22,11 +38,11 @@ export default function Auth(){
             </div>
         ):(
         <div className='reg'>
-            <input type="text" name="" id="" placeholder="Логин"/>
-            <input type="text" name="" id="" placeholder="Почта"/>
-            <input type="text" name="" id="" placeholder="Пароль"/>
-            <input type="text" name="" id="" placeholder="Повторите пароль"/>
-            <button className='reg_button'>
+            <input type="text" name="" placeholder="Логин" onChange={handleRegChange}/>
+            <input type="text" name="" placeholder="Почта" onChange={handleRegChange}/>
+            <input type="text" name="" placeholder="Пароль" onChange={handleRegChange}/>
+            <input type="text" name="" placeholder="Повторите пароль" onChange={handleRegChange}/>
+            <button className='reg_button' onClick={handleRegSubmit}>
                 <p>Зарегестрироваться</p>
             </button>
             <button className='dop_auth' onClick={loginSwitch}>
