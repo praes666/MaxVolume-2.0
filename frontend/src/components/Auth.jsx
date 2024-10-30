@@ -6,16 +6,25 @@ export default function Auth(){
     const [regData, setRegData] = useState({username: '', email: '', password: ''})
 
 
+    const qwe = async () => {
+        try{
+            const response = await axios.get('http://localhost:5000/api/message')
+            console.log(response.data.message)
+        } catch(error){
+            console.error(error)
+        }
+    }
+
     const handleRegChange = (e) => {
         setRegData({...regData, [e.target.name]: e.target.value})
     }
 
     const handleRegSubmit = async () => {
         try{
-            const response = await axios.post('http://localhost:5000/api/auth/reg')
-            alert(response.data.message)
+            const response = await axios.get('http://localhost:5000/api/auth/reg')
+            console.log(response.data.message)
         } catch(error){
-            alert('Ошибка регистрации: ', error)
+            console.error(error)
         }
     }
 
@@ -29,7 +38,7 @@ export default function Auth(){
             <div className='reg'>
                 <input type="text" name="" placeholder="Логин"/>
                 <input type="text" name="" placeholder="Пароль"/>
-                <button className='reg_button'>
+                <button className='reg_button' onClick={qwe}>
                     <p>Войти</p>
                 </button>
                 <button className='dop_auth' onClick={loginSwitch}>

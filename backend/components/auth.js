@@ -1,8 +1,9 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
 const router = express.Router();
+
+const User = require('../models/user');
 
 const JWS_SECRET = 'slonoviapiska'
 
@@ -20,7 +21,7 @@ router.post('/reg', async (req, res) => {
     res.status(201).json({message: "Пользователь зарегистрирован"})
 })
 
-router.post('/auth', async (req, res) => {
+router.post('/login', async (req, res) => {
     const {email, password} = req.body
 
     if(!User.findOne({email})) return res.status(400).json({message: "Пользователя не существует"})
