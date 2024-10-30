@@ -4,7 +4,7 @@ const db = new sqlite3.Database('./users.db');
 db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS user (
             id INTEGER PRIMARY KEY, 
-            username TEXT UNIQUE, 
+            login TEXT UNIQUE, 
             email TEXT UNIQUE, 
             password TEXT)`);
 });

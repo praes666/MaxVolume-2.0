@@ -3,26 +3,31 @@ import axios from 'axios'
 
 export default function Auth(){
     const [isLoginShow, setLoginShow] = useState(true)
-    const [regData, setRegData] = useState({username: '', email: '', password: ''})
+    const [regData, setRegData] = useState({login: '', email: '', password: ''})
+    const [loginData, setLoginData] = useState({login: '', password: ''})
+
+    const handleLoginChange = (e) => {
+        setLoginData({ ...loginData, [e.target.name]: e.target.value });
+    };
+
+    const handleRegChange = (e) => {
+        setRegData({ ...regData, [e.target.name]: e.target.value });
+    };
 
 
-    const qwe = async () => {
+    const handleRegSubmit = async () => {
         try{
-            const response = await axios.get('http://localhost:5000/api/message')
-            console.log(response.data.message)
+            const response = await axios.post('http://localhost:5000/auth/reg', regData)
+            if(response.status == 201) alert(response.data.message)
         } catch(error){
             console.error(error)
         }
     }
 
-    const handleRegChange = (e) => {
-        setRegData({...regData, [e.target.name]: e.target.value})
-    }
-
-    const handleRegSubmit = async () => {
+    const handleLoginSubmit = async () => {
         try{
-            const response = await axios.get('http://localhost:5000/api/auth/reg')
-            console.log(response.data.message)
+            const response = await axios.post('http://localhost:5000/auth/login', loginData)
+            if(response.status == 201) alert(response.data.message)
         } catch(error){
             console.error(error)
         }
@@ -36,9 +41,9 @@ export default function Auth(){
     return(
         isLoginShow ? (
             <div className='reg'>
-                <input type="text" name="" placeholder="Логин"/>
-                <input type="text" name="" placeholder="Пароль"/>
-                <button className='reg_button' onClick={qwe}>
+                <input type="text" name='login' placeholder="Логин" onChange={handleLoginChange}/>
+                <input type="text" name='password' placeholder="Пароль" onChange={handleLoginChange}/>
+                <button className='reg_button' onClick={handleLoginSubmit}>
                     <p>Войти</p>
                 </button>
                 <button className='dop_auth' onClick={loginSwitch}>
@@ -47,10 +52,9 @@ export default function Auth(){
             </div>
         ):(
         <div className='reg'>
-            <input type="text" name="" placeholder="Логин" onChange={handleRegChange}/>
-            <input type="text" name="" placeholder="Почта" onChange={handleRegChange}/>
-            <input type="text" name="" placeholder="Пароль" onChange={handleRegChange}/>
-            <input type="text" name="" placeholder="Повторите пароль" onChange={handleRegChange}/>
+            <input type="text" name='login' placeholder="Логин" onChange={handleRegChange}/>
+            <input type="text" name='email' placeholder="Почта" onChange={handleRegChange}/>
+            <input type="text" name='password' placeholder="Пароль" onChange={handleRegChange}/>
             <button className='reg_button' onClick={handleRegSubmit}>
                 <p>Зарегестрироваться</p>
             </button>
