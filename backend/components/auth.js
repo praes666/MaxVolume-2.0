@@ -27,11 +27,18 @@ router.post('/reg', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const {login, password} = req.body
-    console.log(req.body)
 
+    if(login=='' || password==''){
+        return res.status(201).json({message: "Заполните все поля"})
+    }
 
+    db.get('SELECT * FROM users WHERE login = ?', [login], (err, user) => {
+        if(!user) return res.status(201).json({message: 'Логина не существует'})
+        if(!bcrypt.compareSync(password, user.password)) return res.status(201).json({message: 'Неверный пароль'})
 
-    return res.status(201).json({message: "Пользователь авторизирован"})
+        const token = jwt.sign({id: user.id, login: user.login}, JWS_SECRET, {expiresIn: '1h'})
+        return res.status(201).json({message: 'Успешная авторизация'})
+    })
 })
 
 module.exports = router

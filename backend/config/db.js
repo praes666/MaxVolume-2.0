@@ -6,7 +6,15 @@ db.serialize(() => {
             id INTEGER PRIMARY KEY, 
             login TEXT UNIQUE, 
             email TEXT UNIQUE, 
-            password TEXT)`);
+            password TEXT
+            )`)
+    db.run(`CREATE TABLE IF NOT EXISTS tracks (
+        id INTEGER PRIMARY KEY, 
+        name TEXT,
+        author TEXT,
+        img BLOB, 
+        track TEXT
+        )`)
 });
 
 module.exports = db;
