@@ -8,6 +8,7 @@ db.serialize(() => {
             email TEXT UNIQUE, 
             password TEXT
             )`)
+            
     db.run(`CREATE TABLE IF NOT EXISTS tracks (
         id INTEGER PRIMARY KEY, 
         name TEXT,

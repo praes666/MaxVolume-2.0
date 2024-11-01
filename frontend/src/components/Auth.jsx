@@ -6,6 +6,8 @@ export default function Auth(){
     const [regData, setRegData] = useState({login: '', email: '', password: ''})
     const [loginData, setLoginData] = useState({login: '', password: ''})
 
+    // const token = ''
+
     const handleLoginChange = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
     };
@@ -26,7 +28,11 @@ export default function Auth(){
     const handleLoginSubmit = async () => {
         try{
             const response = await axios.post('http://localhost:5000/auth/login', loginData)
-            if(response.status == 201) alert(response.data.message)
+            if(response.status == 201){
+                alert(response.data.message)
+                // token = response.data
+            } 
+
         } catch(error){
             console.error(error)
         }
