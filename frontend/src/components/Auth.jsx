@@ -8,6 +8,11 @@ export default function Auth(){
 
     // const token = ''
 
+    const clearAuth = () => {
+        setLoginData({login: '', password: ''})
+        setRegData({login: '', email: '', password: ''})
+    }
+
     const handleLoginChange = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
     };
@@ -19,6 +24,7 @@ export default function Auth(){
     const handleRegSubmit = async () => {
         try{
             const response = await axios.post('http://localhost:5000/auth/reg', regData)
+            clearAuth()
             if(response.status == 201) alert(response.data.message)
         } catch(error){
             console.error(error)
@@ -28,6 +34,7 @@ export default function Auth(){
     const handleLoginSubmit = async () => {
         try{
             const response = await axios.post('http://localhost:5000/auth/login', loginData)
+            clearAuth()
             if(response.status == 201){
                 alert(response.data.message)
                 // token = response.data
@@ -46,8 +53,8 @@ export default function Auth(){
     return(
         isLoginShow ? (
             <div className='reg'>
-                <input type="text" name='login' placeholder="Логин" onChange={handleLoginChange}/>
-                <input type="text" name='password' placeholder="Пароль" onChange={handleLoginChange}/>
+                <input type="text" name='login' value={loginData.login} placeholder="Логин" onChange={handleLoginChange}/>
+                <input type="text" name='password' value={loginData.password} placeholder="Пароль" onChange={handleLoginChange}/>
                 <button className='reg_button' onClick={handleLoginSubmit}>
                     <p>Войти</p>
                 </button>
