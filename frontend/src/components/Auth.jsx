@@ -6,7 +6,7 @@ export default function Auth(){
     const [regData, setRegData] = useState({login: '', email: '', password: ''})
     const [loginData, setLoginData] = useState({login: '', password: ''})
 
-    // const token = ''
+    // localStorage.setItem('isAuth', false)
 
     const clearAuth = () => {
         setLoginData({login: '', password: ''})
@@ -37,7 +37,8 @@ export default function Auth(){
             clearAuth()
             if(response.status == 201){
                 alert(response.data.message)
-                // token = response.data
+                localStorage.setItem('token', response.data.token)
+                // localStorage.setItem('isAuth', true)
             } 
 
         } catch(error){
@@ -64,9 +65,9 @@ export default function Auth(){
             </div>
         ):(
         <div className='reg'>
-            <input type="text" name='login' placeholder="Логин" onChange={handleRegChange}/>
-            <input type="text" name='email' placeholder="Почта" onChange={handleRegChange}/>
-            <input type="text" name='password' placeholder="Пароль" onChange={handleRegChange}/>
+            <input type="text" name='login' value={regData.login} placeholder="Логин" onChange={handleRegChange}/>
+            <input type="text" name='email' value={regData.email} placeholder="Почта" onChange={handleRegChange}/>
+            <input type="text" name='password' value={regData.password} placeholder="Пароль" onChange={handleRegChange}/>
             <button className='reg_button' onClick={handleRegSubmit}>
                 <p>Зарегестрироваться</p>
             </button>

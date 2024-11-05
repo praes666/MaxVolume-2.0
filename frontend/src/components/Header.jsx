@@ -7,24 +7,14 @@ import { useState } from 'react'
 import Auth from './Auth'
 
 export default function Header() {
-	const isAuth = false
 	const [isVisible, setVisible] = useState(false)
-	// const [isLogin, setLogin] = useState(true)
-
-	// function loginSwitch(){
-	// 	if(isLogin)
-	// 		{setLogin(false)}
-	// 	if(!isLogin)
-	// 		{setLogin(true)}
-	// }
-
-	function profile_click(){
-		if(isVisible)
-			{setVisible(false)}
-		if(!isVisible)
-			{setVisible(true)}
+	const isAuth = false
+	
+	const profile_click = () => {
+		if(isVisible){setVisible(false)}
+		else{setVisible(true)}
 	}
-
+	
     return(
 		<div className="head_back">
 			<div className="header centered">
@@ -56,12 +46,14 @@ export default function Header() {
 						
 					</button>
 			</div>
-			{isVisible ? (
-				isAuth ? (
+
+			
+
+			{isVisible ? ( localStorage.getItem('token') != null ? (
 					<div className="dropdown">
 						<button>
 							<img src={logo} alt=""/>
-							<p>Профиль</p>
+							<p>{localStorage.getItem('token')}</p>
 						</button>
 						<button>
 							<img src={logo} alt=""/>
@@ -76,12 +68,11 @@ export default function Header() {
 							<p>Подписки</p>
 						</button>
 					</div>
-				):(
-				<Auth />
-			)
-		):
+				):(<Auth/>)
+			):
 		<div></div>
-		}	
+		}
+
 		</div>
     )
 }

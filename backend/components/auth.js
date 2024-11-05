@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
         if(!bcrypt.compareSync(password, user.password)) return res.status(201).json({message: 'Неверный пароль'})
 
         const token = jwt.sign({id: user.id, login: user.login}, JWS_SECRET, {expiresIn: '1h'})
-        return res.status(201).json({message: 'Успешная авторизация'})
+        return res.status(201).json({message: 'Успешная авторизация', token: token})
     })
 })
 
