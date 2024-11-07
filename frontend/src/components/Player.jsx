@@ -69,7 +69,7 @@ export default function Player(){
         audioRef.current.addEventListener("timeupdate", timeUpdateF)
         return() => {
             audioRef.current.removeEventListener("timeupdate", timeUpdateF)
-        }})
+    }})
 
     return(
         <div className="inv">

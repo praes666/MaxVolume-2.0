@@ -6,8 +6,6 @@ export default function Auth(){
     const [regData, setRegData] = useState({login: '', email: '', password: ''})
     const [loginData, setLoginData] = useState({login: '', password: ''})
 
-    // localStorage.setItem('isAuth', false)
-
     const clearAuth = () => {
         setLoginData({login: '', password: ''})
         setRegData({login: '', email: '', password: ''})
@@ -38,9 +36,7 @@ export default function Auth(){
             if(response.status == 201){
                 alert(response.data.message)
                 localStorage.setItem('token', response.data.token)
-                // localStorage.setItem('isAuth', true)
             } 
-
         } catch(error){
             console.error(error)
         }

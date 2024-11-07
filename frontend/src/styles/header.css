@@ -101,8 +101,8 @@
     flex-direction: column;
     overflow: hidden;
     width: 200px;
-    height: 160px;
-    left: 70.5vw;
+    height: 200px;
+    left: 70.13vw;
     border: 1px solid rgb(0, 150, 255);
     border-top: 0;
     border-bottom-left-radius: 5px;
@@ -126,7 +126,6 @@
 
 .reg{
     position: absolute;
-    left: 70.5vw;
     display: flex;
     flex-direction: column;
     /* overflow: hidden; */
