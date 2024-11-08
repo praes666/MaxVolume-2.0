@@ -34,8 +34,8 @@ export default function Auth(){
             const response = await axios.post('http://localhost:5000/auth/login', loginData)
             clearAuth()
             if(response.status == 201){
-                alert(response.data.message)
                 localStorage.setItem('token', response.data.token)
+                location.reload();
             } 
         } catch(error){
             console.error(error)

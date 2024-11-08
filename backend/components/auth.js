@@ -44,10 +44,10 @@ router.post('/login', async (req, res) => {
 router.post('/checkValidToken', async(req, res) => {
     const {token} = req.body
     try{
-        if(jwt.verify(token, JWS_SECRET)) return res.status(201).json({message: 'Валидный токен'})
-            else return res.status(401).json({message: 'Невалидный токен'})
+        if(jwt.verify(token, JWS_SECRET)) return res.status(201).json({isValid: true})
+            else return res.status(201).json({isValid: false})
     }catch{
-        return res.status(201).json({message: 'Невалидный токен', notValid: true})
+        return res.status(201).json({isValid: false})
     }
 })
 

@@ -1,30 +1,19 @@
 import logo from '../img/Kraken_logo.jpeg'
 import lupa from '../img/search.png'
-// import empty_profile from '../img/empty_profile.png'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import Auth from './Auth'
+import tokenCheck from './tokenCheck'
 
 export default function Header() {
 	const [isVisible, setVisible] = useState(false)
 	
 	const deauth = async () => {
 		localStorage.removeItem('token')
-		alert('Вы вышли из аккаунта!')
+		location.reload();
 	}
-
-	const checkValidToken = async () => {
-        try{
-			const token = localStorage.getItem('token')
-            const response = await axios.post('http://localhost:5000/auth/checkValidToken', {token})
-			alert(response.data.message)
-			if(response.data.notValid == true) localStorage.removeItem('token')
-        } catch(error){
-            console.error(error)
-        }
-    }
 
 	const profile_click = () => {
 		if(isVisible){setVisible(false)}
@@ -51,7 +40,7 @@ export default function Header() {
 						<img src={lupa} alt=""/>
 					</button>
 				</div>    
-				<button className="head_button_right" onClick={checkValidToken}>
+				<button className="head_button_right" onClick={tokenCheck}>
 					<p>Библиотека</p>
 				</button>
 				{localStorage.getItem('token') != null ? (
