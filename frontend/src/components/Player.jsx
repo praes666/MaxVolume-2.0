@@ -1,14 +1,17 @@
-import prev from '../img/player/previous.png'
-import pause from '../img/player/pause.png'
-import play from '../img/player/play.png'
-import next from '../img/player/next.png'
-import shuffle from '../img/player/shuffle.png'
-import repeat from '../img/player/repeat.png'
-import volume from '../img/player/volume.png'
-import like from '../img/player/liked.png'
-// import unlike from '../img/player/unliked.png'
+import { MdSkipPrevious } from "react-icons/md"
+import { MdSkipNext } from "react-icons/md"
+import { IoPause } from "react-icons/io5"
+import { IoPlay } from "react-icons/io5"
+import { IoRepeat } from "react-icons/io5"
+import { IoShuffle } from "react-icons/io5"
+import { IoVolumeMute } from "react-icons/io5"
+import { IoVolumeLow } from "react-icons/io5"
+import { IoVolumeMedium } from "react-icons/io5"
+import { IoVolumeHigh } from "react-icons/io5"
+import { FaHeart } from "react-icons/fa6";
+import { FaRegHeart } from "react-icons/fa6";
 
-import track from '../test_track/track.mp3'
+import track from '../../../tracks/track.mp3'
 
 import { useState, useRef, useEffect }from 'react'
 
@@ -76,24 +79,15 @@ export default function Player(){
             <div className='centered'>
                 <div className="player">
                     <div className="side_button">
-                        <button className="player_button">
-                            <img src={prev} alt=""/>
-                        </button>
-
-                        <button className="player_button" onClick={playerControl}>
-                        {isPlaying ? <img src={pause} alt=""/> : <img src={play} alt=""/> }
-                        </button>
-
-                        <button className="player_button">
-                        <img src={next} alt=""/>
-                        </button>
-
-                        <button className="player_button">
-                            <img src={repeat} alt=""/>
-                        </button>
-                        <button className="player_button">
-                            <img src={shuffle} alt=""/>
-                        </button>
+                        <MdSkipPrevious/>
+                        {isPlaying ? 
+                        <IoPause onClick={playerControl}/> 
+                        :
+                        <IoPlay onClick={playerControl}/>
+                        }
+                        <MdSkipNext/>
+                        <IoRepeat/>
+                        <IoShuffle/>
                     </div>
                     <div className="button_mid">
                         <p className="time">{timeFormating(currentTime)}</p>
@@ -106,9 +100,7 @@ export default function Player(){
                         <p className="time">{timeFormating(duration)}</p>
                     </div>
                     <div className="side_button">
-                        <button className="player_button" onClick={volumeControl}>
-                            <img src={volume} alt=""/>
-                        </button>
+                            <IoVolumeHigh onClick={volumeControl}/>
                         {showVolume ? (
                             <div className='volume'>
                                 <p>{currentVolume}</p>
@@ -121,10 +113,7 @@ export default function Player(){
                             </div>
                         ):<div></div>
                         }
-                        
-                        <button className="player_button">
-                            <img src={like} alt=""/>
-                        </button>
+                        <FaHeart/>
                         <div className="trackinfo">
                             <img src={logo} alt=""/>
                             <div className='ti_text'>

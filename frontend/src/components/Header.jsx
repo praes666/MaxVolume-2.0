@@ -1,8 +1,7 @@
+import { IoSearch } from "react-icons/io5"
 import logo from '../img/Kraken_logo.jpeg'
-import lupa from '../img/search.png'
 
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useState } from 'react'
 
 import Auth from './Auth'
 import tokenCheck from './tokenCheck'
@@ -36,9 +35,7 @@ export default function Header() {
 				</button>
 				<div className="search">
 					<input type="text" placeholder="Поиск..."/>
-					<button>
-						<img src={lupa} alt=""/>
-					</button>
+					<IoSearch/>
 				</div>    
 				<button className="head_button_right" onClick={tokenCheck}>
 					<p>Библиотека</p>

@@ -1,9 +1,11 @@
 import logo from '../img/Kraken_logo.jpeg'
 import { IoEllipsisHorizontal } from "react-icons/io5"
 
-export default function TrackContainer({img, name, author, file}){
+import '../styles/TrackContainerBig.css'
+
+export default function TrackContainerBig({img, name, author, file}){
     return(
-        <div className="trackContainer">
+        <div className="trackContainerBig">
             <div className="trackImg">
                 <img src={logo}/>
             </div>

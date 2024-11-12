@@ -14,7 +14,7 @@ db.serialize(() => {
         name TEXT,
         author TEXT,
         img BLOB, 
-        track TEXT
+        track_path TEXT
         )`)
 });
 
