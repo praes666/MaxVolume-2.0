@@ -16,6 +16,14 @@ db.serialize(() => {
         img BLOB, 
         track_path TEXT
         )`)
+
+    db.run(`CREATE TABLE IF NOT EXISTS liked (
+        id INTEGER PRIMARY KEY, 
+        user_id INTEGER,
+        track_id INTEGER,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (track_id) REFERENCES tracks(id)
+        )`)
 });
 
 module.exports = db;
