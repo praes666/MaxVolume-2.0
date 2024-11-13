@@ -2,13 +2,14 @@ import { IoSearch } from "react-icons/io5"
 import logo from '../img/Kraken_logo.jpeg'
 
 import { useState } from 'react'
+// import { useNavigate } from 'react-router-dom'
 
 import Auth from './Auth'
 import tokenCheck from './tokenCheck'
 
 export default function Header() {
 	const [isVisible, setVisible] = useState(false)
-	
+
 	const deauth = async () => {
 		localStorage.removeItem('token')
 		location.reload();

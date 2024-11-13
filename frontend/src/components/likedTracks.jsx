@@ -1,10 +1,9 @@
 import logo from '../img/Kraken_logo.jpeg'
 
+import TrackContainerBig from './trackContainerBig'
+
 export default function LikedTracks(){
     return(
-        <div>
-            <img src={logo} alt="" />
-            asd
-        </div>
+        <TrackContainerBig img={logo} name='Name' author='author'/>
     )
 }
