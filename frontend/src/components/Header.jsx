@@ -2,7 +2,7 @@ import { IoSearch } from "react-icons/io5"
 import logo from '../img/Kraken_logo.jpeg'
 
 import { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 import Auth from './Auth'
 import tokenCheck from './tokenCheck'
@@ -28,9 +28,11 @@ export default function Header() {
 					<img src={logo}/>
 					
 				</button>
+					<Link to='/'>
 				<button className="head_button_left">
-					<p>Главная</p>
+						<p>Главная</p>
 				</button>                
+					</Link>
 				<button className="head_button_left">
 					<p>Новинки</p>
 				</button>
@@ -60,10 +62,12 @@ export default function Header() {
 							<img src={logo} alt=""/>
 							<p>{JSON.parse(atob(localStorage.getItem('token').split('.')[1])).login}</p>
 						</button>
-						<button>
-							<img src={logo} alt=""/>
-							<p>Лайки</p>
-						</button>
+						<Link to='/likes'>
+							<button>
+								<img src={logo} alt=""/>
+								<p>Лайки</p>
+							</button>
+						</Link>
 						<button>
 							<img src={logo} alt=""/>
 							<p>Плейлисты</p>
