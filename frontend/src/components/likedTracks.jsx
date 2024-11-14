@@ -4,6 +4,8 @@ import TrackContainerBig from './trackContainerBig'
 
 import tokenCheck from './tokenCheck'
 
+import '../styles/likedTracks.css'
+
 export default function LikedTracks(){
     const getLikedTracks = async () => {
         if(await tokenCheck() == true){
@@ -24,8 +26,16 @@ export default function LikedTracks(){
 
     return(
         <div className='centered'>
-            <TrackContainerBig img={logo} name='Name' author='author'/>
-            <TrackContainerBig img={logo} name='Name' author='author'/>
+            <div className='likedTracks'>
+                <TrackContainerBig img={logo} name='1' author='author'/>
+                <TrackContainerBig img={logo} name='2' author='author'/>
+                <TrackContainerBig img={logo} name='3' author='author'/>
+                <TrackContainerBig img={logo} name='4' author='author'/>
+                <TrackContainerBig img={logo} name='5' author='author'/>
+                <TrackContainerBig img={logo} name='6' author='author'/>
+                <TrackContainerBig img={logo} name='7' author='author'/>
+                <TrackContainerBig img={logo} name='8' author='author'/>
+            </div>
         </div>
     )
 }

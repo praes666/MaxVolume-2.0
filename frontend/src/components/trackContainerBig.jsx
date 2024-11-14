@@ -1,5 +1,3 @@
-import { IoEllipsisHorizontal } from "react-icons/io5"
-
 import '../styles/TrackContainerBig.css'
 
 export default function TrackContainerBig({ img, name, author, file }){
@@ -16,9 +14,6 @@ export default function TrackContainerBig({ img, name, author, file }){
                     <p>{author}</p>
                 </button>
                 <p>Длительность</p>
-                <button>
-                    <IoEllipsisHorizontal />
-                </button>
             </div>
         </div>
     )

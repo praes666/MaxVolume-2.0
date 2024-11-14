@@ -14,3 +14,10 @@
 разбить всё на компоненты поменьше
 
 ПЕРЕДЕЛАТЬ ВИЗУАЛ ПОЛНОСТЬЮ
+
+
+
+
+
+
+import { IoEllipsisHorizontal } from "react-icons/io5"

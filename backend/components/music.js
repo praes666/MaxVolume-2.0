@@ -9,10 +9,9 @@ const JWS_SECRET = secret.JWT_SECRET
 
 router.post('/getliked', async(req, res) => {
     const {token} = req.body
-    console.log(token)
-
-    console.log(jwt.verify(token, JWS_SECRET))
-
+    db.get('SELECT * FROM liked WHERE user_id = ?', [jwt.decode(token, JWS_SECRET).id], (err, tracks) => {
+        return res.status(201).json({})
+    })
     return res.status(201).json({message: 'Успешная авторизация'})
 })
 
