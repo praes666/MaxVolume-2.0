@@ -10,7 +10,6 @@ export default function Mainpage(){
                     <img src={add} alt=""/>
                 {/* </a> */}
             </div>
-            {/* <img src={page_stuf} alt=""/> */}
         </div>
     </div>
     )

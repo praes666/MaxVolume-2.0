@@ -6,14 +6,10 @@ import { Link } from "react-router-dom"
 
 import Auth from './Auth'
 import tokenCheck from './tokenCheck'
+import ProfileDropdown from "./profileDropdown"
 
 export default function Header() {
 	const [isVisible, setVisible] = useState(false)
-
-	const deauth = async () => {
-		localStorage.removeItem('token')
-		location.reload();
-	}
 
 	const profile_click = () => {
 		if(isVisible){setVisible(false)}
@@ -28,11 +24,11 @@ export default function Header() {
 					<img src={logo}/>
 					
 				</button>
-					<Link to='/'>
-				<button className="head_button_left">
+				<Link to='/'>
+					<button className="head_button_left">
 						<p>Главная</p>
-				</button>                
-					</Link>
+					</button>                
+				</Link>
 				<button className="head_button_left">
 					<p>Новинки</p>
 				</button>
@@ -56,32 +52,8 @@ export default function Header() {
 
 
 
-			{isVisible ? ( localStorage.getItem('token') != null ? (
-					<div className="dropdown">
-						<button>
-							<img src={logo} alt=""/>
-							<p>{JSON.parse(atob(localStorage.getItem('token').split('.')[1])).login}</p>
-						</button>
-						<Link to='/likes'>
-							<button>
-								<img src={logo} alt=""/>
-								<p>Лайки</p>
-							</button>
-						</Link>
-						<button>
-							<img src={logo} alt=""/>
-							<p>Плейлисты</p>
-						</button>
-						<button>
-							<img src={logo} alt=""/>
-							<p>Подписки</p>
-						</button>
-						<button onClick={deauth}>
-							<img src={logo} alt=""/>
-							<p>Выход</p>
-						</button>
-					</div>
-				):(<Auth/>)
+			{isVisible ? ( localStorage.getItem('token') != null ?
+			(<ProfileDropdown/>):(<Auth/>)
 			):
 		<div></div>
 		}

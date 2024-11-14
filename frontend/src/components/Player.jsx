@@ -8,12 +8,13 @@ import { IoVolumeMute } from "react-icons/io5"
 import { IoVolumeLow } from "react-icons/io5"
 import { IoVolumeMedium } from "react-icons/io5"
 import { IoVolumeHigh } from "react-icons/io5"
-import { FaHeart } from "react-icons/fa6";
-import { FaRegHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa6"
+import { FaRegHeart } from "react-icons/fa6"
 
 import track from '../../../tracks/track.mp3'
 
 import { useState, useRef, useEffect }from 'react'
+import { IconContext } from "react-icons"
 
 import logo from '../img/Kraken_logo.jpeg'
 
@@ -78,6 +79,7 @@ export default function Player(){
         <div className="inv">
             <div className='centered'>
                 <div className="player">
+                <IconContext.Provider value={{className: "playerIcons" }}>
                     <div className="side_button">
                         <MdSkipPrevious/>
                         {isPlaying ? 
@@ -122,6 +124,7 @@ export default function Player(){
                             </div>
                         </div>
                     </div>
+                </IconContext.Provider>
                 </div>
             </div>
             <audio ref={audioRef} src={track} preload='auto'></audio>

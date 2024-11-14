@@ -5,7 +5,8 @@ const router = express.Router();
 
 const db = require('../config/db')
 
-const JWS_SECRET = 'slonoviapiska'
+const secret = require('../JWT_SECRET.json')
+const JWS_SECRET = secret.JWT_SECRET
 
 router.post('/reg', async (req, res) => {
     const {login, email, password} = req.body

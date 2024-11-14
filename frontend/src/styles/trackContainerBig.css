@@ -17,10 +17,6 @@
     justify-content: center;
 }
 
-.trackName{
-    cursor: pointer;
-}
-
 button{
     background-color: rgb(70, 70, 70);
 }
