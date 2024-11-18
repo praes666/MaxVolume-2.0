@@ -1,14 +1,13 @@
 import add from '../img/svo.jpg'
-// import page_stuf from '../img/bebra.png'
+import tokenCheck from './tokenCheck'
 
 export default function Mainpage(){
+    tokenCheck()
     return(
         <div className="centered">
         <div className="main">
             <div className="ad">
-                {/* <a href="https://службапоконтракту.рф/"> */}
-                    <img src={add} alt=""/>
-                {/* </a> */}
+                <img src={add} alt=""/>
             </div>
         </div>
     </div>

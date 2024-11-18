@@ -12,7 +12,7 @@ export default function LikedTracks(){
             try{
                 const token = localStorage.getItem('token')
                 const response = await axios.post('http://localhost:5000/music/getliked', {token})
-                console.log(response.data.message)
+                console.log(response.data.tracks)
             }catch(error){
                 console.error(error)
             }
@@ -29,12 +29,6 @@ export default function LikedTracks(){
             <div className='likedTracks'>
                 <TrackContainerBig img={logo} name='1' author='author'/>
                 <TrackContainerBig img={logo} name='2' author='author'/>
-                <TrackContainerBig img={logo} name='3' author='author'/>
-                <TrackContainerBig img={logo} name='4' author='author'/>
-                <TrackContainerBig img={logo} name='5' author='author'/>
-                <TrackContainerBig img={logo} name='6' author='author'/>
-                <TrackContainerBig img={logo} name='7' author='author'/>
-                <TrackContainerBig img={logo} name='8' author='author'/>
             </div>
         </div>
     )
