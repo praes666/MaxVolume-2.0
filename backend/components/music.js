@@ -17,21 +17,8 @@ router.post('/getliked', async (req, res) => {
                 return res.status(500).json({ message: 'Ошибка сервера' });
             }
             if (!tracks) return res.status(404).json({ message: 'Нет лайкнутых треков' })
-            
-        //     tracks.forEach((e) => {
-        //         db.get('SELECT * FROM tracks WHERE id = ?', [e.track_id], (err, info) => {
-        //             if (err) {
-        //                 console.error(err);
-        //                 return res.status(500).json({ message: 'Ошибка сервера' });
-        //             }
-        //             tracks_info.push(info)
-        //             console.log(tracks_info)
-        //         })
-        //     })
-        //     console.log('a', tracks_info)
-        //     return res.status(200).json({tracks: tracks_info})
 
-            db.get('SELECT * FROM tracks WHERE id = ?', [tracks[1].track_id], (err, info) => {
+            db.all('SELECT * FROM tracks WHERE id = ?', [tracks[1].track_id], (err, info) => {
                 return res.status(200).json({tracks: info})
             })
 

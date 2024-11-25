@@ -1,6 +1,6 @@
 import '../styles/TrackContainerBig.css'
 
-export default function TrackContainerBig({ img, name, author, file }){
+export default function TrackContainerBig({ img, name, author }){
     return(
         <div className="trackContainerBig">
             <div className="trackImg">

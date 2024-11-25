@@ -13,7 +13,7 @@ db.serialize(() => {
         id INTEGER PRIMARY KEY, 
         name TEXT,
         author TEXT,
-        img BLOB, 
+        img TEXT, 
         track_path TEXT
         )`)
 
