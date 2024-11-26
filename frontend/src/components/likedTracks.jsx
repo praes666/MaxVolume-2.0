@@ -3,35 +3,30 @@ import axios from 'axios'
 
 import TrackContainerBig from './trackContainerBig'
 import tokenCheck from './tokenCheck'
-import logo from '../img/Kraken_logo.jpeg'
 
 import '../styles/likedTracks.css'
+import { redirect } from 'react-router'
 
 export default function LikedTracks(){
     const[trackList, setTrackList] = useState([])
 
     const getLikedTracks = async () => {
-        if(await tokenCheck() == true){
-            try{
-                const token = localStorage.getItem('token')
+        try{
+            const token = localStorage.getItem('token')
+            if(token != null){
                 const response = await axios.post('http://localhost:5000/music/getliked', {token})
                 setTrackList(response.data.tracks)
-            }catch(error){
-                console.error(error)
+            }else{
+                alert('Вы не можете находиться тут, будучи не авторизованными. Вы будете перенаправленны на главную страницу')
+                window.location.replace('/') 
             }
-        }
-        else{
-            console.log('Токен не валидный')
+            }catch(error){
+            console.error(error)
         }
     }
 
     useEffect(() => {
-        if(getLikedTracks() != true){
-            return(
-                <p>Вы не авторизованны</p>
-            )
-        }
-        
+        getLikedTracks()
     }, [])
 
     return(
@@ -42,7 +37,7 @@ export default function LikedTracks(){
                 })
                 :
                     <div className='likedTracks'>
-                        <p>Вы ещё не добавили ни одного трека в избранное</p>
+                        <h1 style={{color: '#ffffff'}}>ПУСТО</h1>
                     </div>
                 }
             </div>

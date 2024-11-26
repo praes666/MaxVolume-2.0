@@ -16,6 +16,10 @@ router.post('/reg', async (req, res) => {
     }
 
     db.get("SELECT * FROM users WHERE login = ?", [login], (err, info) => {
+        if (err) {
+            console.log('reg error: ', err)
+            return res.status(500).json({ message: 'Ошибка сервера' });
+        }
         if(info) return res.status(201).json({message: 'Логин уже зарегистрирован'})
         
         const hashedPassword = bcrypt.hashSync(password, 10)
@@ -34,6 +38,10 @@ router.post('/login', async (req, res) => {
     }
 
     db.get('SELECT * FROM users WHERE login = ?', [login], (err, user) => {
+        if (err) {
+            console.log('login error: ', err);
+            return res.status(500).json({ message: 'Ошибка сервера' });
+        }
         if(!user) return res.status(201).json({message: 'Логина не существует'})
         if(!bcrypt.compareSync(password, user.password)) return res.status(201).json({message: 'Неверный пароль'})
 
@@ -47,7 +55,8 @@ router.post('/checkValidToken', async(req, res) => {
     try{
         if(jwt.verify(token, JWS_SECRET)) return res.status(201).json({isValid: true})
             else return res.status(201).json({isValid: false})
-    }catch{
+    }catch(error){
+        console.log('TokinValidError db error:', error)
         return res.status(201).json({isValid: false})
     }
 })

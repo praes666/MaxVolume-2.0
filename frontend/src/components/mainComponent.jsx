@@ -2,19 +2,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import tokenCheck from './tokenCheck'
 
-import Header from './Header.jsx'
-import Mainpage from './Mainpage.jsx'
-import LikedTracks from './likedTracks.jsx'
-import Player from './Player.jsx'
+import Header from './Header'
+import Mainpage from './Mainpage'
+import LikedTracks from './likedTracks'
+import Player from './Player'
 
 export default function App(){
-    tokenCheck
+    tokenCheck()
     return(
         <Router>
             <Header/>
             <Routes>
-                <Route exact path='/' Component={Mainpage}/>
-                <Route path='/likes' Component={LikedTracks}/>
+                <Route exact path='/' element={<Mainpage/>}/>
+                <Route path='/likes' element={<LikedTracks/>}/>
             </Routes>
             <Player/>
         </Router>
