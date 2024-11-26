@@ -2,10 +2,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import TrackContainerBig from './trackContainerBig'
-import tokenCheck from './tokenCheck'
 
 import '../styles/likedTracks.css'
-import { redirect } from 'react-router'
 
 export default function LikedTracks(){
     const[trackList, setTrackList] = useState([])
@@ -17,8 +15,8 @@ export default function LikedTracks(){
                 const response = await axios.post('http://localhost:5000/music/getliked', {token})
                 setTrackList(response.data.tracks)
             }else{
-                alert('Вы не можете находиться тут, будучи не авторизованными. Вы будете перенаправленны на главную страницу')
                 window.location.replace('/') 
+                alert('Вы не можете находиться тут, будучи не авторизованными. Вы были перенаправленны на главную страницу')
             }
             }catch(error){
             console.error(error)
