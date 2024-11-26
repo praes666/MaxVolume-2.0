@@ -8,10 +8,10 @@ export default function TrackContainerBig({ img, name, author }){
             </div>
             <div className="trackInfo">
                 <button className='trackName'>
-                    <p>{name}</p>
+                    <p className='trackName'>{name}</p>
                 </button>
                 <button className='trackAuthor'>
-                    <p>{author}</p>
+                    <p className='trackAuthor'>{author}</p>
                 </button>
                 <p>Длительность</p>
             </div>

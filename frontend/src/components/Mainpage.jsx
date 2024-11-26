@@ -1,4 +1,5 @@
 import add from '../img/svo.jpg'
+import '../styles/mainpage.css'
 
 export default function Mainpage(){
     return(

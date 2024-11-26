@@ -10,6 +10,7 @@ import { IoVolumeMedium } from "react-icons/io5"
 import { IoVolumeHigh } from "react-icons/io5"
 import { FaHeart } from "react-icons/fa6"
 import { FaRegHeart } from "react-icons/fa6"
+import '../styles/player.css'
 
 import track from '../../../tracks/track.mp3'
 

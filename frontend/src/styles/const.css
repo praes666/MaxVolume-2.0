@@ -33,17 +33,3 @@ body{
     margin-left: auto;
     margin-right: auto; 
 }
-
-button:hover{
-    cursor: pointer;
-}
-
-button:hover p{
-    transition: 0.1s;
-    color: rgb(0, 150, 255);
-    transform: scale(1.1);
-}
-
-button:active p{
-    transform: scale(0.95);
-}
