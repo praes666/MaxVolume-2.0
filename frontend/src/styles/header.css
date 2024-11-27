@@ -5,6 +5,7 @@
     height: 50px;
     border-bottom: 1.5px solid rgb(0, 150, 255);
     position: sticky;
+    z-index: 99;
 }
 .logo{
     height: 100%;
@@ -45,12 +46,12 @@
     padding-left: 3%;
 }
 
-.search button{
+.searchButton{
     position: relative;
     height: 30%;
     align-self: center;
     margin-left: 5px;
-    right: 35px;
+    right: 30px;
     filter: invert(1);
     background: 0;
 }
@@ -128,9 +129,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    /* overflow: hidden; */
     width: 199px;
-    /* height: 160px; */
     background-color: #2f2f2f;
     left: 70.13vw;
     border: 1px solid rgb(0, 150, 255);
@@ -170,16 +169,16 @@
     color: #777777;
 }
 
-button:hover{
+.mybutton:hover{
     cursor: pointer;
 }
 
-button:hover p{
+.mybutton:hover p{
     transition: 0.1s;
     color: rgb(0, 150, 255);
     transform: scale(1.1);
 }
 
-button:active p{
+.mybutton:active p{
     transform: scale(0.95);
 }

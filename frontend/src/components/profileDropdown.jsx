@@ -9,25 +9,25 @@ export default function profileDropdown(){
 
     return(
         <div className="dropdown">
-            <button>
+            <button className='mybutton'>
                 <img src={logo} alt=""/>
                 <p>{JSON.parse(atob(localStorage.getItem('token').split('.')[1])).login}</p>
             </button>
             <Link to='/likes'>
-                <button>
+                <button className='mybutton'>
                     <img src={logo} alt=""/>
                     <p>Лайки</p>
                 </button>
             </Link>
-            <button>
+            <button className='mybutton'>
                 <img src={logo} alt=""/>
                 <p>Плейлисты</p>
             </button>
-            <button>
+            <button className='mybutton'>
                 <img src={logo} alt=""/>
                 <p>Подписки</p>
             </button>
-            <button onClick={deauth}>
+            <button className='mybutton' onClick={deauth}>
                 <img src={logo} alt=""/>
                 <p>Выход</p>
             </button>

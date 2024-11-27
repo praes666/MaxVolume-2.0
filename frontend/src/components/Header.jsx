@@ -21,32 +21,30 @@ export default function Header() {
     return(
 		<div className="head_back">
 			<div className="header centered">
-				
-				<button  className="logo">
+				<button  className="logo mybutton">
 					<img src={logo}/>
-					
 				</button>
 				<Link to='/'>
-					<button className="head_button_left">
+					<button className="head_button_left mybutton">
 						<p>Главная</p>
 					</button>                
 				</Link>
-				<button className="head_button_left">
+				<button className="head_button_left mybutton">
 					<p>Новинки</p>
 				</button>
 				<div className="search">
 					<input type="text" placeholder="Поиск..."/>
-					<IoSearch/>
+					<IoSearch className="searchButton"/>
 				</div>    
-				<button className="head_button_right" onClick={tokenCheck}>
+				<button className="head_button_right mybutton" onClick={tokenCheck}>
 					<p>Библиотека</p>
 				</button>
 				{localStorage.getItem('token') != null ? (
-					<button className="head_button_right profile" onClick={profile_click}>
+					<button className="head_button_right profile mybutton" onClick={profile_click}>
 					<p>{JSON.parse(atob(localStorage.getItem('token').split('.')[1])).login}</p>
 				</button>
 				):(
-					<button className="head_button_right profile" onClick={profile_click}>
+					<button className="head_button_right profile mybutton" onClick={profile_click}>
 						<p>Вход</p>
 					</button>
 				)}

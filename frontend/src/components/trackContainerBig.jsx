@@ -17,20 +17,19 @@ export default function TrackContainerBig({ img, name, author }){
                     display: isMove ? "block" : "none"
                 }}>
                     <GoPlay className='hoverPlayButton'/>
-                    <div className="hoverButtons">
-                        <FaHeart className='hoverLikeButton'/>
-                        <CiCircleMore className='hoverMoreButton'/>
+                    <div className="hoverButtonsDiv">
+                        <FaHeart className='hoverIcons'/>
+                        <CiCircleMore className='hoverIcons'/>
                     </div>
                 </div>
             </div>
             <div className="trackInfo">
                 <button className='trackName'>
-                    <p className='trackName'>{name}</p>
+                    <p className="trackName">{name}</p>
                 </button>
                 <button className='trackAuthor'>
-                    <p className='trackAuthor'>{author}</p>
+                    <p>{author}</p>
                 </button>
-                <p>Длительность</p>
             </div>
         </div>
     )

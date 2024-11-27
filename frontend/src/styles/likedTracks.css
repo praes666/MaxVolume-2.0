@@ -1,4 +1,6 @@
 .likedTracks{
+    width: 100%;
+    height: auto;
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
