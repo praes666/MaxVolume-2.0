@@ -12,6 +12,5 @@ export default async function tokenCheck(){
             return true
         }
     } catch(error){
-        console.log('catched error:')
-        console.error(error)
+        console.error('tokenCheck error:', error)
     }}

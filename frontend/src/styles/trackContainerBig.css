@@ -35,13 +35,12 @@
 
 .hoverButtonsDiv{
     position: absolute;
-    bottom: 0;
-    height: 15%;
+    bottom: 4%;
     width: 100%;
     display: flex;
     justify-content: end;
     align-items: center;
-    padding-right: 5px;
+    padding-right: 3%;
     gap: 5px;
 }
 
@@ -60,7 +59,7 @@
 }
 
 .trackInfo p{
-    color: #999999;
+    color: #aaaaaa;
 }
 
 .trackInfo p:hover{

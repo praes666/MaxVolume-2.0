@@ -4,22 +4,20 @@ import { IoPause } from "react-icons/io5"
 import { IoPlay } from "react-icons/io5"
 import { IoRepeat } from "react-icons/io5"
 import { IoShuffle } from "react-icons/io5"
-import { IoVolumeMute } from "react-icons/io5"
-import { IoVolumeLow } from "react-icons/io5"
-import { IoVolumeMedium } from "react-icons/io5"
 import { IoVolumeHigh } from "react-icons/io5"
 import { FaHeart } from "react-icons/fa6"
-import { FaRegHeart } from "react-icons/fa6"
-import '../styles/player.css'
-
-import track from '../../../tracks/track.mp3'
+// import { FaRegHeart } from "react-icons/fa6"
 
 import { useState, useRef, useEffect }from 'react'
 import { IconContext } from "react-icons"
 
+import '../styles/player.css'
+
 import logo from '../img/Kraken_logo.jpeg'
 
 export default function Player(){
+    const[currentTrack, setCurrentTrack] = useState(null)
+
     const[isPlaying, setPlaying] = useState(false)
     const[currentTime, setCurrentTime] = useState(0)
     const[duration, setDuration] = useState(0)
@@ -29,6 +27,7 @@ export default function Player(){
 
     const audioRef = useRef(null)
 
+    
     const VolSliderChange = (e) => {
         audioRef.current.volume = (Math.pow(e.target.value, 1.5)/5).toFixed(2)
         setVolume(e.target.value)
@@ -83,7 +82,7 @@ export default function Player(){
                 <IconContext.Provider value={{className: "playerIcons" }}>
                     <div className="side_button">
                         <MdSkipPrevious/>
-                        {isPlaying ? 
+                        {isPlaying ?
                         <IoPause onClick={playerControl}/> 
                         :
                         <IoPlay onClick={playerControl}/>
@@ -128,7 +127,7 @@ export default function Player(){
                 </IconContext.Provider>
                 </div>
             </div>
-            <audio ref={audioRef} src={track} preload='auto'></audio>
+            <audio ref={audioRef} src={currentTrack} preload='auto'></audio>
         </div>
     )
 }

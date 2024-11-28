@@ -14,7 +14,7 @@ export default function profileDropdown(){
                 <p>{JSON.parse(atob(localStorage.getItem('token').split('.')[1])).login}</p>
             </button>
             <Link to='/likes'>
-                <button className='mybutton'>
+                <button className='mybutton' style={{width: '100%'}}>
                     <img src={logo} alt=""/>
                     <p>Лайки</p>
                 </button>

@@ -19,7 +19,7 @@ export default function LikedTracks(){
                 alert('Вы не можете находиться тут, будучи не авторизованными. Вы были перенаправленны на главную страницу')
             }
             }catch(error){
-            console.error(error)
+            console.error('getLikedTracks error:', error)
         }
     }
 
@@ -31,7 +31,7 @@ export default function LikedTracks(){
         <div className='centered'>
             <div className='likedTracks'>
                 {trackList.length > 0 ? trackList.map(currentTrack => {
-                    return(<TrackContainerBig key={currentTrack.id} img={currentTrack.img} name={currentTrack.name} author={currentTrack.author}/>)
+                    return(<TrackContainerBig key={currentTrack.id} id={currentTrack.id} img={currentTrack.img} name={currentTrack.name} author={currentTrack.author}/>)
                 })
                 :
                     <div className='likedTracks'>
