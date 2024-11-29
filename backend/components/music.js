@@ -25,10 +25,12 @@ router.post('/getliked', async (req, res) => {
 })
 
 router.get('/tracks/:trackID', async (req, res) => {
-    try{        
+    try{
         db.get('SELECT * FROM tracks WHERE id = ?', [req.params.trackID], (err, info) => {
             if (!info) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
-            res.status(201).sendFile(info.track_path)
+            res.status(201).sendFile(path.join(__dirname, '/../../tracks/', info.file_name))
+
+            // return res.json({track:"http://localhost:5000/music/tracks/1"});
         })
     }catch(error){
         console.log('music servise tracks error: ', error)

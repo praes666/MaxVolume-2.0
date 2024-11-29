@@ -10,13 +10,14 @@ import { FaHeart } from "react-icons/fa6"
 
 import { useState, useRef, useEffect }from 'react'
 import { IconContext } from "react-icons"
+import { usePlayer } from "./PlayerContent"
 
 import '../styles/player.css'
 
 import logo from '../img/Kraken_logo.jpeg'
 
 export default function Player(){
-    const[currentTrack, setCurrentTrack] = useState(null)
+    const { currentTrack } = usePlayer()
 
     const[isPlaying, setPlaying] = useState(false)
     const[currentTime, setCurrentTime] = useState(0)
@@ -26,7 +27,6 @@ export default function Player(){
     const[currentVolume, setVolume] = useState(0.5)
 
     const audioRef = useRef(null)
-
     
     const VolSliderChange = (e) => {
         audioRef.current.volume = (Math.pow(e.target.value, 1.5)/5).toFixed(2)

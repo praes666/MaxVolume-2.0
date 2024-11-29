@@ -10,6 +10,20 @@ import '../styles/TrackContainerBig.css'
 export default function TrackContainerBig({ id, img, name, author }){
     const [onImg, setOnImg] = useState(false);
 
+    // async function getTrack(id)
+    // {
+    //     try{
+    //         const response = await axios.get(`http://localhost:5000/music/tracks/` + id)
+
+    //             if (!localStorage.getItem("currentTrack"))
+    //             {
+                    
+    //             }
+    //     }catch(error){
+    //         console.error(error)
+    //     }
+    // }
+
     return(
         <div className="trackContainerBig">
             <div className="trackImg" onMouseEnter={() => setOnImg(true)} onMouseLeave={() => setOnImg(false)}>

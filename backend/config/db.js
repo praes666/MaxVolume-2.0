@@ -14,7 +14,7 @@ db.serialize(() => {
         name TEXT,
         author TEXT,
         img TEXT, 
-        track_path TEXT
+        file_name TEXT
         )`)
 
     db.run(`CREATE TABLE IF NOT EXISTS liked (
