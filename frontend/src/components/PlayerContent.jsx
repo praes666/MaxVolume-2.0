@@ -9,9 +9,9 @@ export const PlayerProvider = ({ children }) => {
     const playTrack = (trackUrl) => {
         setCurrentTrack(trackUrl)
     }
-    
+
     return(
-        <PlayerContext.Provider value={{ currentTrack, playTrack }}>
+        <PlayerContext.Provider value={{ currentTrack, playTrack}}>
             {children}
         </PlayerContext.Provider>
     )
