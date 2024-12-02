@@ -6,12 +6,12 @@ export const usePlayer = () => useContext(PlayerContext)
 export const PlayerProvider = ({ children }) => {
     const [currentTrack, setCurrentTrack] = useState(null)
 
-    const playerTrack = (trackUrl) => {
+    const playTrack = (trackUrl) => {
         setCurrentTrack(trackUrl)
     }
     
     return(
-        <PlayerContext.Provider value={{ currentTrack, playerTrack }}>
+        <PlayerContext.Provider value={{ currentTrack, playTrack }}>
             {children}
         </PlayerContext.Provider>
     )

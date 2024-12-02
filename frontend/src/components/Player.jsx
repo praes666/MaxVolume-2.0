@@ -21,7 +21,7 @@ export default function Player(){
 
     const[isPlaying, setPlaying] = useState(false)
     const[currentTime, setCurrentTime] = useState(0)
-    const[duration, setDuration] = useState(0)
+    const[duration, setDuration] = useState(null)
 
     const[showVolume, setVolumeActive] = useState(false)
     const[currentVolume, setVolume] = useState(0.5)
@@ -69,6 +69,13 @@ export default function Player(){
         return `${minutes}:${seconds}`
     }
 
+    useEffect(() => {
+        if(currentTrack && audioRef.current){
+            audioRef.current.load();
+            playerPlay()
+        }
+    }, [currentTrack])
+    
     useEffect(() => {
         audioRef.current.addEventListener("timeupdate", timeUpdateF)
         return() => {
@@ -127,7 +134,7 @@ export default function Player(){
                 </IconContext.Provider>
                 </div>
             </div>
-            <audio ref={audioRef} src={currentTrack} preload='auto'></audio>
+            <audio ref={audioRef} src={currentTrack}></audio>
         </div>
     )
 }

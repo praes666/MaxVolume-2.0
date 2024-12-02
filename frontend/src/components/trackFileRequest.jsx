@@ -1,12 +1,9 @@
-import axios from 'axios'
-
-export default async function trackFileRequest(trackID){
+export default async function trackFileRequest(trackID, playTrack){
     try{
-        const response = await axios.get(`http://localhost:5000/music/tracks/${trackID}`)
-            console.log(response)
-            // return JSON.stringify({
-            //     track: response.data.track
-            // })
+        const response = await fetch(`http://localhost:5000/music/tracks/${trackID}`)
+            const audioBlob = await response.blob()
+            const audioURL = URL.createObjectURL(audioBlob)
+            playTrack(audioURL)
     }catch(error){
         console.error(error)
     }

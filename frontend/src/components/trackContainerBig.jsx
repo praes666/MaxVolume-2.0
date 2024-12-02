@@ -2,27 +2,15 @@ import { IoPlayCircleOutline } from "react-icons/io5";
 import { IoPauseCircleOutline } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa6";
 import { CiCircleMore } from "react-icons/ci";
-import TrackFileRequest from "./trackFileRequest";
 import { useState } from 'react'
+import TrackFileRequest from "./trackFileRequest";
 import '../styles/TrackContainerBig.css'
 
+import { usePlayer } from "./PlayerContent";
 
 export default function TrackContainerBig({ id, img, name, author }){
     const [onImg, setOnImg] = useState(false);
-
-    // async function getTrack(id)
-    // {
-    //     try{
-    //         const response = await axios.get(`http://localhost:5000/music/tracks/` + id)
-
-    //             if (!localStorage.getItem("currentTrack"))
-    //             {
-                    
-    //             }
-    //     }catch(error){
-    //         console.error(error)
-    //     }
-    // }
+    const { playTrack } = usePlayer()
 
     return(
         <div className="trackContainerBig">
@@ -31,7 +19,7 @@ export default function TrackContainerBig({ id, img, name, author }){
                 <div className='imgeHover' style= {{
                     display: onImg ? "block" : "none"
                 }}>
-                    <IoPlayCircleOutline className='hoverPlayButton' onClick={() => TrackFileRequest(id)}/>
+                    <IoPlayCircleOutline className='hoverPlayButton' onClick={() => TrackFileRequest(id, playTrack)}/>
                     <div className="hoverButtonsDiv">
                         <FaHeart className='hoverIcons'/>
                         <CiCircleMore className='hoverIcons'/>
