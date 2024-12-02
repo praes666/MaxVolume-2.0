@@ -52,7 +52,7 @@ export default function Auth(){
             <div className='reg'>
                 <input type="text" name='login' value={loginData.login} placeholder="Логин" onChange={handleLoginChange}/>
                 <input type="text" name='password' value={loginData.password} placeholder="Пароль" onChange={handleLoginChange}/>
-                <button className='reg_button' onClick={handleLoginSubmit}>
+                <button className='reg_button mybutton' onClick={handleLoginSubmit}>
                     <p>Войти</p>
                 </button>
                 <button className='dop_auth' onClick={loginSwitch}>
@@ -64,7 +64,7 @@ export default function Auth(){
             <input type="text" name='login' value={regData.login} placeholder="Логин" onChange={handleRegChange}/>
             <input type="text" name='email' value={regData.email} placeholder="Почта" onChange={handleRegChange}/>
             <input type="text" name='password' value={regData.password} placeholder="Пароль" onChange={handleRegChange}/>
-            <button className='reg_button' onClick={handleRegSubmit}>
+            <button className='reg_button mybutton' onClick={handleRegSubmit}>
                 <p>Зарегестрироваться</p>
             </button>
             <button className='dop_auth' onClick={loginSwitch}>

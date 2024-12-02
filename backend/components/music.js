@@ -10,13 +10,9 @@ const JWS_SECRET = secret.JWT_SECRET
 
 router.post('/getliked', async (req, res) => {
     const {token} = req.body
-    try{        
-        db.all('SELECT * FROM liked WHERE user_id = ?', [jwt.decode(token, JWS_SECRET).id], (err, tracks) => {
-            if (!tracks) return res.status(404).json({message: 'Нет лайкнутых треков'})
-                
-        db.all('SELECT * FROM tracks WHERE id = ?', [tracks[1].track_id], (err, info) => {
-            return res.status(200).json({tracks: info})
-        })    
+    try{
+        db.all(`SELECT * FROM liked JOIN tracks ON liked.track_id = tracks.id WHERE liked.user_id = ?`, [jwt.decode(token, JWS_SECRET).id], (err, tracks) => {
+            return res.status(200).json({tracks: tracks})
         })
     }catch(error){
         console.log('music servise getliked error: ', error)
@@ -29,8 +25,6 @@ router.get('/tracks/:trackID', async (req, res) => {
         db.get('SELECT * FROM tracks WHERE id = ?', [req.params.trackID], (err, info) => {
             if (!info) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
             res.status(201).sendFile(path.join(__dirname, '/../../tracks/', info.file_name))
-
-            // return res.json({track:"http://localhost:5000/music/tracks/1"});
         })
     }catch(error){
         console.log('music servise tracks error: ', error)
