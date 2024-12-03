@@ -14,6 +14,7 @@ db.serialize(() => {
         name TEXT,
         author TEXT,
         img TEXT, 
+        added_at DATATIME DEFAULT NOW,
         file_name TEXT
         )`)
 
