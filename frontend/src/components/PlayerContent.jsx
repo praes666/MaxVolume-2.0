@@ -5,50 +5,44 @@ export const usePlayer = () => useContext(PlayerContext)
 
 export const PlayerProvider = ({ children }) => {
     const [queue, setQueue] = useState([])
-    const [currentTrackIndex, setcurrentTrackIndex] = useState(null)
-    // const [currentTrackFile, setCurrentTrackFile] = useState(null)
-    // const [currentTrackInfo, setCurrentTrackInfo] = useState(null)
+    const [currentTrack, setCurrentTrack] = useState(null)
+    const [currentTrackIndex, setCurrentTrackIndex] = useState(null)
     
-    // const playTrack = (trackUrl, trackInfo) => {
-    //     setCurrentTrackFile(trackUrl)
-    //     setCurrentTrackInfo(trackInfo)
-    // }
-    
-    const SetQueueFunc = (q) => {
+    const setQueueFunc = (q) => {
         setQueue(q)
     }
 
-    const setCurrentTrack = (index) => {
-        if(index >= 0 && index < queue.length){
-            setcurrentTrackIndex(index)
-        }
+    const setCurrentTrackF = (info) => {
+        setCurrentTrackIndex(info.id)
+        setCurrentTrack(info)
     }
 
     const prevTrack = () => {
+        console.log('prev')
         if(queue.length > 0){
             if(currentTrackIndex > 0){
-                setcurrentTrackIndex(currentTrackIndex-1)
+                setCurrentTrackIndex(currentTrackIndex-1)
             }
             else{
-                setcurrentTrackIndex(queue.length-1)
+                setCurrentTrackIndex(queue.length-1)
             }
         }
     }
 
     const nextTrack = () => {
+        console.log('next')
         if(queue.length > 0){
             if(currentTrackIndex < queue.length-1){
-                setcurrentTrackIndex(currentTrackIndex+1)
+                setCurrentTrackIndex(currentTrackIndex+1)
             }
             else{
-                setcurrentTrackIndex(0)
+                setCurrentTrackIndex(0)
             }
         }
     }
 
     return(
-        // <PlayerContext.Provider value={{ currentTrackFile, currentTrackInfo, playTrack }}>
-        <PlayerContext.Provider value={{ currentTrackIndex, currentTrack: queue[currentTrackIndex], queue, SetQueueFunc, setCurrentTrack, prevTrack, nextTrack }}>
+        <PlayerContext.Provider value={{ currentTrackIndex, currentTrack, queue, setQueueFunc, setCurrentTrackF, prevTrack, nextTrack }}>
             {children}
         </PlayerContext.Provider>
     )

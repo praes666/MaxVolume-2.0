@@ -10,7 +10,7 @@ import { usePlayer } from "./PlayerContent";
 
 export default function TrackContainerBig({ trackInfo }){
     const [onImg, setOnImg] = useState(false);
-    const { playTrack } = usePlayer()
+    const { setCurrentTrackF } = usePlayer()
 
     return(
         <div className="trackContainerBig">
@@ -19,7 +19,7 @@ export default function TrackContainerBig({ trackInfo }){
                 <div className='imgeHover' style= {{
                     display: onImg ? "block" : "none"
                 }}>
-                    <IoPlayCircleOutline className='hoverPlayButton' onClick={() => TrackFileRequest(trackInfo.id, playTrack)}/>
+                    <IoPlayCircleOutline className='hoverPlayButton' onClick={() => setCurrentTrackF(trackInfo)}/>
                     <div className="hoverButtonsDiv">
                         <FaHeart className='hoverIcons'/>
                         <CiCircleMore className='hoverIcons'/>

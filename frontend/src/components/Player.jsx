@@ -7,13 +7,15 @@ import { FaHeart } from "react-icons/fa6"
 import { useState, useRef, useEffect }from 'react'
 import { IconContext } from "react-icons"
 import { usePlayer } from "./PlayerContent"
+import trackFileRequest from "./trackFileRequest";
 
 import '../styles/player.css'
 
 import logo from '../img/Kraken_logo.jpeg'
 
 export default function Player(){
-    // const { currentTrackFile, currentTrackInfo } = usePlayer()
+    const { currentTrack, currentTrackIndex, prevTrack, nextTrack } = usePlayer()
+    const[trackFile, setTrackFile] = useState(null)
 
     const[isPlaying, setPlaying] = useState(false)
     const[currentTime, setCurrentTime] = useState(0)
@@ -66,11 +68,14 @@ export default function Player(){
     }
 
     useEffect(() => {
-        if(currentTrackFile && audioRef.current){
-            audioRef.current.load();
-            playerPlay()
+        if(currentTrackIndex){
+            console.log(trackFileRequest(currentTrackIndex))
+            // setTrackFile(trackFileRequest(currentTrackIndex))
+            // audioRef.current.load();
+            // playerPlay()
         }
-    }, [currentTrackFile])
+        console.log('currentTrackIndex in Player', currentTrackIndex)
+    }, [currentTrackIndex])
     
     useEffect(() => {
         audioRef.current.addEventListener("timeupdate", timeUpdateF)
@@ -84,13 +89,13 @@ export default function Player(){
                 <div className="player">
                 <IconContext.Provider value={{className: "playerIcons" }}>
                     <div className="side_button">
-                        <MdSkipPrevious/>
+                        <MdSkipPrevious onClick={prevTrack}/>
                         {isPlaying ?
                         <IoPause onClick={playerControl}/> 
                         :
                         <IoPlay onClick={playerControl}/>
                         }
-                        <MdSkipNext/>
+                        <MdSkipNext onClick={nextTrack}/>
                         <IoRepeat/>
                         <IoShuffle/>
                     </div>
@@ -118,19 +123,19 @@ export default function Player(){
                             </div>
                         ):<div></div>
                         }
-                        <FaHeart/>
                         <div className="trackinfo">
-                            <img src={currentTrackInfo?.img || logo} alt=""/>
+                        <FaHeart/>
+                            <img src={currentTrack?.img || logo} alt=""/>
                             <div className='ti_text'>
-                                <p className='track_name'>{currentTrackInfo?.name || '-'}</p>
-                                <p className='track_author'>{currentTrackInfo?.author || '-'}</p>
+                                <p className='track_name'>{currentTrack?.name || 'Название'}</p>
+                                <p className='track_author'>{currentTrack?.author || 'Исполнитель'}</p>
                             </div>
                         </div>
                     </div>
                 </IconContext.Provider>
                 </div>
             </div>
-            <audio ref={audioRef} src={currentTrackFile}></audio>
+            <audio ref={audioRef} src={trackFile}></audio>
         </div>
     )
 }

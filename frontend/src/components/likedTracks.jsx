@@ -2,18 +2,19 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import TrackContainerBig from './trackContainerBig'
+import { usePlayer } from './PlayerContent'
 
 import '../styles/likedTracks.css'
 
 export default function LikedTracks(){
-    const[trackList, setTrackList] = useState([])
+    const { setQueueFunc, queue } = usePlayer()
 
     const getLikedTracks = async () => {
         try{
             const token = localStorage.getItem('token')
             if(token != null){
                 const response = await axios.post('http://localhost:5000/music/getliked', {token})
-                setTrackList(response.data.tracks)
+                setQueueFunc(response.data.tracks)
             }else{
                 window.location.replace('/') 
                 alert('Вы не можете находиться тут, будучи не авторизованными. Вы были перенаправленны на главную страницу')
@@ -30,7 +31,7 @@ export default function LikedTracks(){
     return(
         <div className='centered'>
             <div className='likedTracks'>
-                {trackList.length > 0 ? trackList.map(trackInfo => {
+                {queue.length > 0 ? queue.map(trackInfo => {
                     return(<TrackContainerBig key={trackInfo.id} trackInfo={trackInfo}/>)
                 })
                 :
