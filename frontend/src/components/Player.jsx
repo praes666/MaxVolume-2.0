@@ -1,10 +1,6 @@
 import { MdSkipPrevious } from "react-icons/md"
 import { MdSkipNext } from "react-icons/md"
-import { IoPause } from "react-icons/io5"
-import { IoPlay } from "react-icons/io5"
-import { IoRepeat } from "react-icons/io5"
-import { IoShuffle } from "react-icons/io5"
-import { IoVolumeHigh } from "react-icons/io5"
+import { IoPause, IoPlay, IoRepeat, IoShuffle, IoVolumeHigh } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa6"
 // import { FaRegHeart } from "react-icons/fa6"
 
@@ -17,7 +13,7 @@ import '../styles/player.css'
 import logo from '../img/Kraken_logo.jpeg'
 
 export default function Player(){
-    const { currentTrack } = usePlayer()
+    const { currentTrackFile, currentTrackInfo } = usePlayer()
 
     const[isPlaying, setPlaying] = useState(false)
     const[currentTime, setCurrentTime] = useState(0)
@@ -70,11 +66,11 @@ export default function Player(){
     }
 
     useEffect(() => {
-        if(currentTrack && audioRef.current){
+        if(currentTrackFile && audioRef.current){
             audioRef.current.load();
             playerPlay()
         }
-    }, [currentTrack])
+    }, [currentTrackFile])
     
     useEffect(() => {
         audioRef.current.addEventListener("timeupdate", timeUpdateF)
@@ -124,17 +120,17 @@ export default function Player(){
                         }
                         <FaHeart/>
                         <div className="trackinfo">
-                            <img src={logo} alt=""/>
+                            <img src={currentTrackInfo?.img || logo} alt=""/>
                             <div className='ti_text'>
-                                <p className='track_name'>Название трека</p>
-                                <p className='track_author'>Автор</p>
+                                <p className='track_name'>{currentTrackInfo?.name || '-'}</p>
+                                <p className='track_author'>{currentTrackInfo?.author || '-'}</p>
                             </div>
                         </div>
                     </div>
                 </IconContext.Provider>
                 </div>
             </div>
-            <audio ref={audioRef} src={currentTrack}></audio>
+            <audio ref={audioRef} src={currentTrackFile}></audio>
         </div>
     )
 }

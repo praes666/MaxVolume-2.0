@@ -30,8 +30,8 @@ export default function LikedTracks(){
     return(
         <div className='centered'>
             <div className='likedTracks'>
-                {trackList.length > 0 ? trackList.map(currentTrack => {
-                    return(<TrackContainerBig key={currentTrack.id} id={currentTrack.id} img={currentTrack.img} name={currentTrack.name} author={currentTrack.author}/>)
+                {trackList.length > 0 ? trackList.map(trackInfo => {
+                    return(<TrackContainerBig key={trackInfo.id} trackInfo={trackInfo}/>)
                 })
                 :
                     <div className='likedTracks'>
