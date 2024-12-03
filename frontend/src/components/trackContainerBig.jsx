@@ -19,7 +19,7 @@ export default function TrackContainerBig({ trackInfo }){
                 <div className='imgeHover' style= {{
                     display: onImg ? "block" : "none"
                 }}>
-                    <IoPlayCircleOutline className='hoverPlayButton' onClick={() => TrackFileRequest(trackInfo.id, playTrack, trackInfo)}/>
+                    <IoPlayCircleOutline className='hoverPlayButton' onClick={() => TrackFileRequest(trackInfo.id, playTrack)}/>
                     <div className="hoverButtonsDiv">
                         <FaHeart className='hoverIcons'/>
                         <CiCircleMore className='hoverIcons'/>

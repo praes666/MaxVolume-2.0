@@ -13,7 +13,7 @@ import '../styles/player.css'
 import logo from '../img/Kraken_logo.jpeg'
 
 export default function Player(){
-    const { currentTrackFile, currentTrackInfo } = usePlayer()
+    // const { currentTrackFile, currentTrackInfo } = usePlayer()
 
     const[isPlaying, setPlaying] = useState(false)
     const[currentTime, setCurrentTime] = useState(0)
