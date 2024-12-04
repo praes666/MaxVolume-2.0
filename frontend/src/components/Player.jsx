@@ -16,7 +16,7 @@ import logo from '../img/Kraken_logo.jpeg'
 import { number } from "prop-types";
 
 export default function Player(){
-    const { currentTrack, currentTrackIndex, prevTrack, nextTrack } = usePlayer()
+    const { currentTrack, prevTrack, nextTrack } = usePlayer()
     const[trackFile, setTrackFile] = useState(null)
 
     const[isPlaying, setPlaying] = useState(false)
@@ -47,7 +47,6 @@ export default function Player(){
     
     const playerPlay = () => {
         audioRef.current.volume = (Math.pow(0.5, 1.5)/5).toFixed(2)
-        audioRef.current.load();
         audioRef.current.play()
         setPlaying(true)
     }
@@ -73,21 +72,24 @@ export default function Player(){
     }
 
     useEffect(() => {
-        if(currentTrackIndex){
-            if(isPlaying) playerPause()
-            trackFileRequest(currentTrackIndex)
+        if(currentTrack?.id){
+            if(isPlaying) playerPause()   
+            trackFileRequest(currentTrack.id)
                 .then(audioURL => {
                     setTrackFile(audioURL)
-                    audioRef.current.load();
                 })
                 .catch(err => {
                     console.error('', err)
                 })
-                timeUpdateF()
-                // playerPlay()                                                                 // ПОФИКСИТЬ ПЛЕЙ
+            audioRef.current.load()       
+            setTimeout(() => {
+                playerPlay()
+            }, 100)
+            timeUpdateF()
         }
-    }, [currentTrackIndex, currentTrack])
-    
+
+    }, [currentTrack])
+
     useEffect(() => {
         audioRef.current.addEventListener("timeupdate", timeUpdateF)
         return() => {
@@ -146,7 +148,7 @@ export default function Player(){
                 </IconContext.Provider>
                 </div>
             </div>
-            <audio ref={audioRef} src={trackFile}></audio>
+            <audio ref={audioRef} src={trackFile} preload="auto"></audio>
         </div>
     )
 }
