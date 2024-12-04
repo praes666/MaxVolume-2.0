@@ -20,6 +20,16 @@ router.post('/getliked', async (req, res) => {
     }
 })
 
+// router.get('zxc/:trackID', async (req, res) => {
+//     try{
+//         db.get('SELECT * FROM TRACKS WHERE id', [req.params.trackID], (err, info) => {
+
+//         })
+//     }catch(error){
+//         console.log('zxc error: ', error)
+//     }
+// })
+
 router.get('/tracks/:trackID', async (req, res) => {
     try{
         db.get('SELECT * FROM tracks WHERE id = ?', [req.params.trackID], (err, info) => {

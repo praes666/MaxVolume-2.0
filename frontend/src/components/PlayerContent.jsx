@@ -18,27 +18,30 @@ export const PlayerProvider = ({ children }) => {
     }
 
     const prevTrack = () => {
-        console.log('prev')
-        if(queue.length > 0){
-            if(currentTrackIndex > 0){
-                setCurrentTrackIndex(currentTrackIndex-1)
-            }
-            else{
-                setCurrentTrackIndex(queue.length-1)
-            }
-        }
+        console.log('prev to ', currentTrackIndex-1)
+        // if(queue.length > 0){
+        //     if(currentTrackIndex > 0){
+        //         setCurrentTrackIndex(currentTrackIndex-1)
+        //     }
+        //     else{
+        //         setCurrentTrackIndex(queue.length-1)
+        //     }
+        // }
+
+        setCurrentTrackIndex(currentTrackIndex-1)
     }
 
     const nextTrack = () => {
-        console.log('next')
-        if(queue.length > 0){
-            if(currentTrackIndex < queue.length-1){
-                setCurrentTrackIndex(currentTrackIndex+1)
-            }
-            else{
-                setCurrentTrackIndex(0)
-            }
-        }
+        console.log('next to ', currentTrackIndex+1)
+        // if(queue.length > 0){
+        //     if(currentTrackIndex < queue.length-1){
+        //         setCurrentTrackIndex(currentTrackIndex+1)
+        //     }
+        //     else{
+        //         setCurrentTrackIndex(0)
+        //     }
+        // }
+        setCurrentTrackIndex(currentTrackIndex+1)
     }
 
     return(

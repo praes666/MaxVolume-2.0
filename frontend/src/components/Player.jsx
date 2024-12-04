@@ -4,6 +4,7 @@ import { IoPause, IoPlay, IoRepeat, IoShuffle, IoVolumeHigh } from "react-icons/
 import { FaHeart } from "react-icons/fa6"
 // import { FaRegHeart } from "react-icons/fa6"
 
+import axios from 'axios'
 import { useState, useRef, useEffect }from 'react'
 import { IconContext } from "react-icons"
 import { usePlayer } from "./PlayerContent"
@@ -12,6 +13,7 @@ import trackFileRequest from "./trackFileRequest";
 import '../styles/player.css'
 
 import logo from '../img/Kraken_logo.jpeg'
+import { number } from "prop-types";
 
 export default function Player(){
     const { currentTrack, currentTrackIndex, prevTrack, nextTrack } = usePlayer()
@@ -19,7 +21,7 @@ export default function Player(){
 
     const[isPlaying, setPlaying] = useState(false)
     const[currentTime, setCurrentTime] = useState(0)
-    const[duration, setDuration] = useState(null)
+    const[duration, setDuration] = useState(0)
 
     const[showVolume, setVolumeActive] = useState(false)
     const[currentVolume, setVolume] = useState(0.5)
@@ -31,9 +33,11 @@ export default function Player(){
         setVolume(e.target.value)
     }
 
-    const timeUpdateF = () => {
-        setCurrentTime(audioRef.current.currentTime)
-        setDuration(audioRef.current.duration)
+    const timeUpdateF = () => {  
+        if(!isNaN(audioRef.current.duration)){
+            setCurrentTime(audioRef.current.currentTime)
+            setDuration(audioRef.current.duration)
+        }
     }
     
     const DurSliderChange = (e) => {
@@ -43,6 +47,7 @@ export default function Player(){
     
     const playerPlay = () => {
         audioRef.current.volume = (Math.pow(0.5, 1.5)/5).toFixed(2)
+        audioRef.current.load();
         audioRef.current.play()
         setPlaying(true)
     }
@@ -69,13 +74,19 @@ export default function Player(){
 
     useEffect(() => {
         if(currentTrackIndex){
-            console.log(trackFileRequest(currentTrackIndex))
-            // setTrackFile(trackFileRequest(currentTrackIndex))
-            // audioRef.current.load();
-            // playerPlay()
+            if(isPlaying) playerPause()
+            trackFileRequest(currentTrackIndex)
+                .then(audioURL => {
+                    setTrackFile(audioURL)
+                    audioRef.current.load();
+                })
+                .catch(err => {
+                    console.error('', err)
+                })
+                timeUpdateF()
+                // playerPlay()                                                                 // ПОФИКСИТЬ ПЛЕЙ
         }
-        console.log('currentTrackIndex in Player', currentTrackIndex)
-    }, [currentTrackIndex])
+    }, [currentTrackIndex, currentTrack])
     
     useEffect(() => {
         audioRef.current.addEventListener("timeupdate", timeUpdateF)
@@ -104,7 +115,7 @@ export default function Player(){
                         <input
                         type="range"
                         value={currentTime}
-                        max={duration}
+                        max={duration || 0}
                         onChange={DurSliderChange}
                         />
                         <p className="time">{timeFormating(duration)}</p>
