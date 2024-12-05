@@ -7,14 +7,15 @@ import { usePlayer } from './PlayerContent'
 import '../styles/likedTracks.css'
 
 export default function LikedTracks(){
-    const { setQueueFunc, queue } = usePlayer()
+    const { setQueueFunc, queue, liked, setLikedFunc} = usePlayer()
 
     const getLikedTracks = async () => {
         try{
             const token = localStorage.getItem('token')
             if(token != null){
                 const response = await axios.post('http://localhost:5000/music/getliked', {token})
-                setQueueFunc(response.data.tracks)
+                setQueueFunc(response.data.tracks.reverse())
+                setLikedFunc(response.data.tracks.reverse())
             }else{
                 window.location.replace('/') 
                 alert('Вы не можете находиться тут, будучи не авторизованными. Вы были перенаправленны на главную страницу')
@@ -36,7 +37,7 @@ export default function LikedTracks(){
                 })
                 :
                     <div className='likedTracks'>
-                        <h1 style={{color: '#ffffff'}}>ПУСТО</h1>
+                        <h1>ПУСТО</h1>
                     </div>
                 }
             </div>

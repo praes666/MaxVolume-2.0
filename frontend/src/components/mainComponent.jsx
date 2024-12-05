@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import tokenCheck from './tokenCheck'
+import getLikedTracks from './getLikedTracks'
 import { PlayerProvider } from './PlayerContent'
 
 import Header from './Header'
@@ -10,6 +11,7 @@ import Player from './Player'
 
 export default function App(){
     tokenCheck()
+    getLikedTracks()
     return(
         <Router>
             <PlayerProvider>

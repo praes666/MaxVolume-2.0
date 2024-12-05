@@ -20,21 +20,21 @@ router.post('/getliked', async (req, res) => {
     }
 })
 
-// router.get('zxc/:trackID', async (req, res) => {
-//     try{
-//         db.get('SELECT * FROM TRACKS WHERE id', [req.params.trackID], (err, info) => {
-
-//         })
-//     }catch(error){
-//         console.log('zxc error: ', error)
-//     }
-// })
+router.get('/getAllTracks', async (req, res) => {
+    try{
+        db.all('SELECT tracks.id AS id, tracks.name, tracks.author, tracks.img  FROM tracks', (err, tracks) => {
+            return res.status(200).json({tracks: tracks})
+        })
+    }catch(error){
+        console.log('gewtAll error: ', error)
+    }
+})
 
 router.get('/tracks/:trackID', async (req, res) => {
     try{
         db.get('SELECT * FROM tracks WHERE id = ?', [req.params.trackID], (err, info) => {
             if (!info) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
-            res.status(201).sendFile(path.join(__dirname, '/../../tracks/', info.file_name))
+            res.status(201).sendFile(path.join(__dirname, '/../tracks/', info.file_name))
         })
     }catch(error){
         console.log('music servise tracks error: ', error)
