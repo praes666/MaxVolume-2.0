@@ -46,8 +46,6 @@ router.get('/tracks/:trackID', async (req, res) => {
 
 router.post('/getplaylists', async (req, res) => {
     const {token} = req.body
-    console.log('token: ', token);
-    
     try{
         db.all('SELECT * FROM playlists WHERE creator_id = ?', [jwt.decode(token, JWS_SECRET).id], (err, playlists) => {
             if (!playlists) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
