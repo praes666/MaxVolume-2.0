@@ -1,11 +1,11 @@
 .inv{
     position: sticky;
+    z-index: 99;
     bottom: 0;
     height: 50px;
     background-color: #2f2f2f;
     border-top: 1.5px solid rgb(0, 150, 255);
     width: 100%;
-    z-index: 99;
 }
 
 .player{

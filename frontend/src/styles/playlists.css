@@ -1,0 +1,24 @@
+.playlistInv{
+    position: absolute;
+    z-index: 98;
+    display: flex;
+    width: 100%;
+    height: 89.5%;
+    top: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.playlistInfo{
+    background-color: #2f2f2f;
+    width: 50%;
+    height: 70%;
+    border-radius: 2%;
+}
+
+.asd{
+    width: 100%;
+    height: 100%;
+}

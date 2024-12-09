@@ -1,6 +1,6 @@
-export default function PlaylistComp({ name, img }){
+export default function PlaylistComp({ name, img, playlist, onClickFunc }){
     return(
-        <div className="trackContainerBig">
+        <div className="trackContainerBig" onClick={() => onClickFunc(playlist)}>
             <div className="trackImg">
                 <img src={img} alt="" />
             </div>
