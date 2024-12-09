@@ -27,11 +27,22 @@ router.post('/getplaylists', async (req, res) => {
     try{
         db.all('SELECT id, name, img FROM playlists WHERE creator_id = ?', [jwt.decode(token, JWS_SECRET).id], (err, playlists) => {
             if (!playlists) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
-            res.status(201).json({playlists: playlists})
+            return res.status(201).json({playlists: playlists})
         })
     }catch(error){
         console.log('getplaylists error: ', error)
         return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
+
+router.get('/getTracksFromPlaylist/:playlistID', async (req, res) => {
+    try{
+        db.all('SELECT tracks.id AS id, tracks.name, tracks.author, tracks.img FROM playlisttracks JOIN tracks ON playlisttracks.track_id = tracks.id WHERE playlisttracks.playlist_id = ?', [req.params.playlistID], (err, tracks) => {
+            if (!tracks) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
+            return res.status(201).json({tracks: tracks})
+        })
+    }catch(error){
+        console.log('getTracksFromPlaylist error: ', error)
     }
 })
 

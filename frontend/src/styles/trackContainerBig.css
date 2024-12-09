@@ -3,13 +3,13 @@
     height: 240px;
 }
 
-.trackImg{
+.trackImgBig{
     width: 190px;
     height: 190px;
     position: relative;
 }
 
-.trackImg img{
+.trackImgBig img{
     width: 100%;
     height: 100%;
 }
@@ -49,7 +49,7 @@
     cursor: pointer;
 }
 
-.trackInfo{
+.trackInfoBig{
     width: 100%;
     height: 50px;
     display: flex;
@@ -58,16 +58,16 @@
     background: none;
 }
 
-.trackInfo p{
+.trackInfoBig p{
     color: #aaaaaa;
 }
 
-.trackInfo p:hover{
+.trackInfoBig p:hover{
     cursor: pointer;
     color: #ffffff;
 }
 
-.trackName{
+.trackNameBig{
     text-align: left;
     height: auto;
     font-size: larger;
@@ -79,7 +79,7 @@
     text-overflow: ellipsis;
 }
 
-.trackAuthor{
+.trackAuthorBig{
     text-align: left;
     font-size: small;
 }

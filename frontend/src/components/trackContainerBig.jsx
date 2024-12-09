@@ -7,12 +7,12 @@ import '../styles/TrackContainerBig.css'
 import { usePlayer } from "./PlayerContent";
 
 export default function TrackContainerBig({ trackInfo }){
-    const [onImg, setOnImg] = useState(false);
+    const [onImg, setOnImg] = useState(false)
     const { setCurrentTrackF, liked } = usePlayer()
     
     return(
         <div className="trackContainerBig">
-            <div className="trackImg" onMouseEnter={() => setOnImg(true)} onMouseLeave={() => setOnImg(false)}>
+            <div className="trackImgBig" onMouseEnter={() => setOnImg(true)} onMouseLeave={() => setOnImg(false)}>
                 <img src={trackInfo.img}/>
                 <div className='imgeHover' style= {{
                     display: onImg ? "block" : "none"
@@ -24,11 +24,11 @@ export default function TrackContainerBig({ trackInfo }){
                     </div>
                 </div>
             </div>
-            <div className="trackInfo">
-                <button className='trackName'>
-                    <p className="trackName dots">{trackInfo.name}</p>
+            <div className="trackInfoBig">
+                <button className='trackNameBig'>
+                    <p className="trackNameBig dots">{trackInfo.name}</p>
                 </button>
-                <button className='trackAuthor'>
+                <button className='trackAuthorBig'>
                     <p className="dots">{trackInfo.author}</p>
                 </button>
             </div>

@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-import PlaylistComp from "./playListComponent"
+import PlaylistCard from "./playlistCard"
 import PlaylistAbsoluteInv from "./playlistAbsoluteInv"
 import '../styles/playlists.css'
 
@@ -32,7 +32,7 @@ export default function palyListpage(){
         <div className="centered">
             <div className="likedTracks">
                 {playlists.length > 0 ? playlists.map(playlist => {
-                    return (<PlaylistComp key={playlist.id} name={playlist.name} img={playlist.img} playlist={playlist} onClickFunc={setOpenPlaylist}/>)
+                    return (<PlaylistCard key={playlist.id} name={playlist.name} img={playlist.img} playlist={playlist} onClickFunc={setOpenPlaylist}/>)
                 })
                 :
                 <h1>PUSTO</h1>

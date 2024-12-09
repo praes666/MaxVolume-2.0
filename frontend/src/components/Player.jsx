@@ -140,8 +140,8 @@ export default function Player(){
                         <FaHeart/>
                             <img src={currentTrack?.img || logo} alt=""/>
                             <div className='ti_text'>
-                                <p className='track_name'>{currentTrack?.name || 'Название'}</p>
-                                <p className='track_author'>{currentTrack?.author || 'Исполнитель'}</p>
+                                <p className='track_name dots'>{currentTrack?.name || 'Название'}</p>
+                                <p className='track_author dots'>{currentTrack?.author || 'Исполнитель'}</p>
                             </div>
                         </div>
                     </div>
