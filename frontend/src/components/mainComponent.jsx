@@ -8,10 +8,11 @@ import Header from './Header'
 import Mainpage from './Mainpage'
 import LikedTracks from './likedTracks'
 import Player from './Player'
+import PalyListpage from './Playlistspage'
 
 export default function App(){
     tokenCheck()
-    getLikedTracks()
+    // getLikedTracks()
     return(
         <Router>
             <PlayerProvider>
@@ -19,6 +20,7 @@ export default function App(){
             <Routes>
                 <Route exact path='/' element={<Mainpage/>}/>
                 <Route path='/likes' element={<LikedTracks/>}/>
+                <Route path='/playlists' element={<PalyListpage/>}/>
             </Routes>
             <Player/>
             </PlayerProvider>

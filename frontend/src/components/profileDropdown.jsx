@@ -19,10 +19,12 @@ export default function profileDropdown(){
                     <p>Лайки</p>
                 </button>
             </Link>
-            <button className='mybutton'>
-                <img src={logo} alt=""/>
-                <p>Плейлисты</p>
-            </button>
+            <Link to='/playlists'>
+                <button className='mybutton' style={{width: '100%'}}>
+                    <img src={logo} alt=""/>
+                    <p>Плейлисты</p>
+                </button>
+            </Link>
             <button className='mybutton'>
                 <img src={logo} alt=""/>
                 <p>Подписки</p>

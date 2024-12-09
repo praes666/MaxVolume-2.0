@@ -5,7 +5,9 @@ const path = require('path')
 
 const db = require('../config/db')
 
-const secret = require('../JWT_SECRET.json')
+const secret = require('../JWT_SECRET.json');
+const { get } = require('http');
+const { log } = require('console');
 const JWS_SECRET = secret.JWT_SECRET
 
 router.post('/getliked', async (req, res) => {
@@ -39,6 +41,20 @@ router.get('/tracks/:trackID', async (req, res) => {
     }catch(error){
         console.log('music servise tracks error: ', error)
         return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
+
+router.post('/getplaylists', async (req, res) => {
+    const {token} = req.body
+    console.log('token: ', token);
+    
+    try{
+        db.all('SELECT * FROM playlists WHERE creator_id = ?', [jwt.decode(token, JWS_SECRET).id], (err, playlists) => {
+            if (!playlists) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
+            res.status(201).json({playlists: playlists})
+        })
+    }catch(error){
+        console.log('getplaylists error: ', error)
     }
 })
 

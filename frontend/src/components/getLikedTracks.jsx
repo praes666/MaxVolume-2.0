@@ -15,7 +15,7 @@ export default async function getLikedTracks(){
                 window.location.replace('/') 
                 alert('Вы не можете находиться тут, будучи не авторизованными. Вы были перенаправленны на главную страницу')
             }
-        }
+        }        
     }catch(error){
         console.error('getLikedTracks error:', error)
     }

@@ -24,6 +24,22 @@ db.serialize(() => {
         FOREIGN KEY (user_id) REFERENCES users(id),
         FOREIGN KEY (track_id) REFERENCES tracks(id)
         )`)
+
+    db.run(`CREATE TABLE IF NOT EXISTS playlists (
+        id INTEGER PRIMARY KEY, 
+        name TEXT,
+        img TEXT,
+        creator_id INTEGET,
+        FOREIGN KEY (creator_id) REFERENCES users(id)
+        )`)
+    
+    db.run(`CREATE TABLE IF NOT EXISTS playlisttracks (
+        id INTEGER PRIMARY KEY, 
+        playlist_id INTEGER,
+        track_id INTEGER,
+        FOREIGN KEY (playlist_id) REFERENCES playlists(id),
+        FOREIGN KEY (track_id) REFERENCES tracks(id)
+        )`)
 });
 
 module.exports = db;
