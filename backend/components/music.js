@@ -22,6 +22,19 @@ router.post('/getliked', async (req, res) => {
     }
 })
 
+router.post('/getplaylists', async (req, res) => {
+    const {token} = req.body
+    try{
+        db.all('SELECT id, name, img FROM playlists WHERE creator_id = ?', [jwt.decode(token, JWS_SECRET).id], (err, playlists) => {
+            if (!playlists) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
+            res.status(201).json({playlists: playlists})
+        })
+    }catch(error){
+        console.log('getplaylists error: ', error)
+        return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
+
 router.get('/getAllTracks', async (req, res) => {
     try{
         db.all('SELECT tracks.id AS id, tracks.name, tracks.author, tracks.img  FROM tracks', (err, tracks) => {
@@ -41,18 +54,6 @@ router.get('/tracks/:trackID', async (req, res) => {
     }catch(error){
         console.log('music servise tracks error: ', error)
         return res.status(500).json({message: 'Ошибка сервера'})
-    }
-})
-
-router.post('/getplaylists', async (req, res) => {
-    const {token} = req.body
-    try{
-        db.all('SELECT * FROM playlists WHERE creator_id = ?', [jwt.decode(token, JWS_SECRET).id], (err, playlists) => {
-            if (!playlists) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
-            res.status(201).json({playlists: playlists})
-        })
-    }catch(error){
-        console.log('getplaylists error: ', error)
     }
 })
 

@@ -36,9 +36,7 @@ export default function LikedTracks(){
                     return(<TrackContainerBig key={trackInfo.id} trackInfo={trackInfo}/>)
                 })
                 :
-                    <div className='likedTracks'>
-                        <h1>ПУСТО</h1>
-                    </div>
+                <h1>ПУСТО</h1>
                 }
             </div>
         </div>
