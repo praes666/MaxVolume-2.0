@@ -9,10 +9,6 @@ export const PlayerProvider = ({ children }) => {
     const [liked, setLiked] = useState([])
     const [currentTrack, setCurrentTrack] = useState(null)
 
-    const setLikedFunc = (l) => {
-        setLiked(l)
-    }
-
     const setCurrentTrackF = (info, queue) => {
         setCurrentTrack(info)
         setQueue(queue)
@@ -33,7 +29,7 @@ export const PlayerProvider = ({ children }) => {
     }
 
     return(
-        <PlayerContext.Provider value={{ currentTrack, queue, liked, setCurrentTrackF, setLikedFunc, setLiked, prevTrack, nextTrack }}>
+        <PlayerContext.Provider value={{ currentTrack, queue, liked, setCurrentTrackF, setLiked, prevTrack, nextTrack }}>
             {children}
         </PlayerContext.Provider>
     )

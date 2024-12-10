@@ -56,7 +56,7 @@ router.get('/getAllTracks', async (req, res) => {
     }
 })
 
-router.get('/tracks/:trackID', async (req, res) => {
+router.get('/tracks/:trackID', async (req, res) => { 
     try{
         db.get('SELECT * FROM tracks WHERE id = ?', [req.params.trackID], (err, info) => {
             if (!info) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
@@ -67,5 +67,26 @@ router.get('/tracks/:trackID', async (req, res) => {
         return res.status(500).json({message: 'Ошибка сервера'})
     }
 })
+
+router.post('/likeManager/:likeID', async(req, res) => {
+    const {token} = req.body
+    try{
+        db.get(`SELECT * FROM liked WHERE user_id = ${jwt.decode(token, JWS_SECRET).id} AND track_id = ${req.params.likeID}`, (err, info) => {
+            if(info){
+                db.run('DELETE FROM liked WHERE user_id = ? AND track_id = ?', [jwt.decode(token, JWS_SECRET).id, req.params.likeID])
+            }
+            else{
+                db.run(`INSERT into liked (user_id, track_id) VALUES(${jwt.decode(token, JWS_SECRET).id}, ${req.params.likeID})`)
+            }
+            return res.status(201).json({message: 'Всё гуд'})
+        })
+    }catch(error){
+        console.log('music like manager error: ', error)
+        return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
+
+
+
 
 module.exports = router

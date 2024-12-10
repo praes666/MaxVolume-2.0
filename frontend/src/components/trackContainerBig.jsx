@@ -1,8 +1,8 @@
 import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
-import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import { CiCircleMore } from "react-icons/ci";
 import { useState } from 'react'
 import { usePlayer } from "./PlayerContent";
+import LikeButton from "./LikeButton";
 import '../styles/TrackContainerBig.css'
 
 
@@ -19,7 +19,7 @@ export default function TrackContainerBig({ trackInfo, queue }){
                 }}>
                     <IoPlayCircleOutline className='hoverPlayButton' onClick={() => setCurrentTrackF(trackInfo, queue)}/>
                     <div className="hoverButtonsDiv">
-                        {liked.some((like) => like.id === trackInfo.id) ? <FaHeart className='hoverIcons'/> : <FaRegHeart className="hoverIcons"/>}
+                        <LikeButton trackInfoId={trackInfo.id}/>
                         <CiCircleMore className='hoverIcons'/>
                     </div>
                 </div>
