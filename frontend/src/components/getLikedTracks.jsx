@@ -1,14 +1,10 @@
 import axios from "axios"
-import { usePlayer } from './PlayerContent'
 
-export default async function getLikedTracks(){
-    const { setLiked } = usePlayer()
-
+export default async function getLikedTracks(setLiked){
     try{
         const token = localStorage.getItem('token')
         if(token != null){
             const response = await axios.post('http://localhost:5000/music/getliked', {token})
-            console.log('liked_tracks: ', response.data.tracks)
             setLiked(response.data.tracks.reverse())
         }
         else{

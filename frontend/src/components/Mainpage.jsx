@@ -26,10 +26,10 @@ export default function Mainpage(){
             <h1>Все доступные треки, на данный момент:</h1>
             <div className='likedTracks'>
                 {allTracks.length > 0 ? allTracks.map(track => {
-                    return(<TrackContainerBig key={track.id} trackInfo={track}/>)
+                    return(<TrackContainerBig key={track.id} trackInfo={track} queue={allTracks}/>)
                 }):
                 <div className='likedTracks'>
-                    <h1>ХЗ ТУТ НИЧЁ НЕТ</h1>
+                    <h1>ХЗ ТУТ НИЧЁ НЕТ, НО ДОЛЖНО БЫТЬ</h1>
                 </div>
                 }
             </div>

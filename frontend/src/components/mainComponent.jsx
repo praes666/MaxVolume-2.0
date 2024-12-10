@@ -2,28 +2,32 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import tokenCheck from './tokenCheck'
 import getLikedTracks from './getLikedTracks'
-import { PlayerProvider } from './PlayerContent'
 
 import Header from './Header'
 import Mainpage from './Mainpage'
 import LikedTracks from './likedTracks'
 import Player from './Player'
 import PalyListpage from './Playlistspage'
+import { useEffect } from 'react'
+import { usePlayer } from './PlayerContent'
 
 export default function App(){
-    tokenCheck()
-    getLikedTracks()
+    const { setLiked } = usePlayer()
+
+    useEffect(() => {
+        tokenCheck()
+        getLikedTracks(setLiked)
+    }, [])
+
     return(
         <Router>
-            <PlayerProvider>
             <Header/>
-            <Routes>
-                <Route exact path='/' element={<Mainpage/>}/>
-                <Route path='/likes' element={<LikedTracks/>}/>
-                <Route path='/playlists' element={<PalyListpage/>}/>
-            </Routes>
+                <Routes>
+                    <Route exact path='/' element={<Mainpage/>}/>
+                    <Route path='/likes' element={<LikedTracks/>}/>
+                    <Route path='/playlists' element={<PalyListpage/>}/>
+                </Routes>
             <Player/>
-            </PlayerProvider>
         </Router>
     )
 }

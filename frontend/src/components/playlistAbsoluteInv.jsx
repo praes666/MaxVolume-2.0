@@ -28,7 +28,7 @@ export default function PlaylistAbsoluteInv({ playlist, playlistFunc }){
                 <div className="trackList">
                     {tracklist.length > 0 ? 
                         tracklist.map(track => {
-                            return (<TrackContainerSmall key={track.id} trackInfo={track} position={tracklist.indexOf(track)+1}/>)
+                            return (<TrackContainerSmall key={track.id} trackInfo={track} position={tracklist.indexOf(track)+1} queue={tracklist}/>)
                         })
                         :
                         <h2>Пока что тут пусто. Добавте музыки!</h2>
