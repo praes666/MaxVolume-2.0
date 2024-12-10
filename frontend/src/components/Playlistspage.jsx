@@ -35,7 +35,7 @@ export default function palyListpage(){
                     return (<PlaylistCard key={playlist.id} name={playlist.name} img={playlist.img} playlist={playlist} onClickFunc={setOpenPlaylist}/>)
                 })
                 :
-                <h1>PUSTO</h1>
+                <h1>ПУСТО</h1>
             }
             {openPlaylist ? 
                 <PlaylistAbsoluteInv playlist={openPlaylist} playlistFunc={setOpenPlaylist}/>        

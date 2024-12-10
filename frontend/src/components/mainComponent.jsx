@@ -12,7 +12,7 @@ import PalyListpage from './Playlistspage'
 
 export default function App(){
     tokenCheck()
-    // getLikedTracks()
+    getLikedTracks()
     return(
         <Router>
             <PlayerProvider>
