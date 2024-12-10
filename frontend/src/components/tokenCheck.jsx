@@ -11,6 +11,12 @@ export default async function tokenCheck(){
             }
             return true
         }
+        else{
+            if(!window.location('/')){
+                window.location.replace('/') 
+                alert('Вы не можете находиться тут, будучи не авторизованными. Вы были перенаправленны на главную страницу')
+            }
+        }  
     } catch(error){
         console.error('tokenCheck error:', error)
     }}

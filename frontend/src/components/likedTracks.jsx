@@ -1,9 +1,5 @@
-import { useEffect, useState } from 'react'
 import { usePlayer } from './PlayerContent'
-import axios from 'axios'
-
 import TrackContainerBig from './trackContainerBig'
-import getLikedTracks from './getLikedTracks'
 import '../styles/likedTracks.css'
 
 export default function LikedTracks(){
