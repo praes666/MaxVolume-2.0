@@ -8,6 +8,7 @@ import Mainpage from './Mainpage'
 import LikedTracks from './likedTracks'
 import Player from './Player'
 import PalyListpage from './Playlistspage'
+import ArtistPage from './ArtistPage'
 import { useEffect } from 'react'
 import { usePlayer } from './PlayerContent'
 
@@ -26,6 +27,7 @@ export default function App(){
                     <Route exact path='/' element={<Mainpage/>}/>
                     <Route path='/likes' element={<LikedTracks/>}/>
                     <Route path='/playlists' element={<PalyListpage/>}/>
+                    <Route path='/artist/:artistName' element={<ArtistPage/>}/>
                 </Routes>
             <Player/>
         </Router>

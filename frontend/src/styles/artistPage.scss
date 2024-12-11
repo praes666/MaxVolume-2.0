@@ -1,0 +1,17 @@
+.artistInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.artistTopInfo{
+    width: 100%;
+    height: 250px;
+    border: 1px solid red
+}
+
+.artistTrackInfo{
+    width: 100%;
+    height: 1000px;
+    border: 1px solid aqua;
+}

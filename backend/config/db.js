@@ -12,9 +12,10 @@ db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS tracks (
         id INTEGER PRIMARY KEY, 
         name TEXT,
-        author TEXT,
+        author INTEGER,
         img TEXT, 
-        file_name TEXT
+        file_name TEXT,
+        FOREIGN KEY (author) REFERENCES artists(id)
         )`)
 
     db.run(`CREATE TABLE IF NOT EXISTS liked (
@@ -39,6 +40,22 @@ db.serialize(() => {
         track_id INTEGER,
         FOREIGN KEY (playlist_id) REFERENCES playlists(id),
         FOREIGN KEY (track_id) REFERENCES tracks(id)
+        )`)
+
+    db.run(`CREATE TABLE IF NOT EXISTS artists (
+        id INTEGER PRIMARY KEY, 
+        name TEXT,
+        img TEXT,
+        background_img TEXT,
+        subscribers INTEGER
+        )`)
+
+    db.run(`CREATE TABLE IF NOT EXISTS subscribes (
+        id INTEGER PRIMARY KEY, 
+        user_id INTEGER,
+        artist_id INTEGER, 
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (artist_id) REFERENCES artists(id)
         )`)
 });
 
