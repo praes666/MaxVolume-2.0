@@ -1,4 +1,5 @@
-начать страницу авторов
+peredelat zaprosi v bd(vivod author v getAll i getLiked)
+sdelat author page
 
 сделать функционал кнопке прочее на панели треков
 

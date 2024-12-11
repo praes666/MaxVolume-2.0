@@ -13,7 +13,7 @@ const JWS_SECRET = secret.JWT_SECRET
 router.post('/getliked', async (req, res) => {
     const {token} = req.body
     try{
-        db.all(`SELECT tracks.id AS id, tracks.name, tracks.author, tracks.img FROM liked JOIN tracks ON liked.track_id = tracks.id WHERE liked.user_id = ?`, [jwt.decode(token, JWS_SECRET).id], (err, tracks) => {
+        db.all(`SELECT tracks.id AS id, tracks.name, tracks.author AS author, tracks.img FROM liked JOIN tracks ON liked.track_id = tracks.id WHERE liked.user_id = ?`, [jwt.decode(token, JWS_SECRET).id], (err, tracks) => {
             return res.status(200).json({tracks: tracks})
         })
     }catch(error){
@@ -48,7 +48,7 @@ router.get('/getTracksFromPlaylist/:playlistID', async (req, res) => {
 
 router.get('/getAllTracks', async (req, res) => {
     try{
-        db.all('SELECT tracks.id AS id, tracks.name, tracks.author, tracks.img  FROM tracks', (err, tracks) => {
+        db.all('SELECT tracks.id, tracks.name, tracks.author AS author, tracks.img  FROM tracks', (err, tracks) => {
             return res.status(200).json({tracks: tracks})
         })
     }catch(error){
