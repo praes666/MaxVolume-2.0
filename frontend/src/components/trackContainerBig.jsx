@@ -5,7 +5,6 @@ import { usePlayer } from "./PlayerContent";
 import LikeButton from "./LikeButton";
 import '../styles/TrackContainerBig.css'
 
-
 export default function TrackContainerBig({ trackInfo, queue }){
     const [onImg, setOnImg] = useState(false)
     const { setCurrentTrackF, liked } = usePlayer()

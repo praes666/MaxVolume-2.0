@@ -10,7 +10,6 @@ export default function Mainpage(){
 
     const getAllTracks = async () => {
         const response = await axios.get('http://localhost:5000/music/getAllTracks')
-        console.log(response.body)
         setAllTracks(response.data.tracks)
     }
 

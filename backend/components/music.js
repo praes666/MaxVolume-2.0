@@ -13,7 +13,7 @@ const JWS_SECRET = secret.JWT_SECRET
 router.post('/getliked', async (req, res) => {
     const {token} = req.body
     try{
-        db.all(`SELECT tracks.id AS id, tracks.name, tracks.author AS author, tracks.img FROM liked JOIN tracks ON liked.track_id = tracks.id WHERE liked.user_id = ?`, [jwt.decode(token, JWS_SECRET).id], (err, tracks) => {
+        db.all(`SELECT tracks.id AS id, tracks.name, artists.name AS author, tracks.img FROM liked JOIN tracks ON liked.track_id = tracks.id JOIN artists ON tracks.author = artists.id WHERE liked.user_id = ?`, [jwt.decode(token, JWS_SECRET).id], (err, tracks) => {
             return res.status(200).json({tracks: tracks})
         })
     }catch(error){
@@ -37,7 +37,7 @@ router.post('/getplaylists', async (req, res) => {
 
 router.get('/getTracksFromPlaylist/:playlistID', async (req, res) => {
     try{
-        db.all('SELECT tracks.id AS id, tracks.name, tracks.author, tracks.img FROM playlisttracks JOIN tracks ON playlisttracks.track_id = tracks.id WHERE playlisttracks.playlist_id = ?', [req.params.playlistID], (err, tracks) => {
+        db.all('SELECT tracks.id AS id, tracks.name, artists.name AS author, tracks.img FROM playlisttracks JOIN tracks ON playlisttracks.track_id = tracks.id JOIN artists ON tracks.author = artists.id WHERE playlisttracks.playlist_id = ?', [req.params.playlistID], (err, tracks) => {
             if (!tracks) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
             return res.status(201).json({tracks: tracks})
         })
@@ -48,7 +48,8 @@ router.get('/getTracksFromPlaylist/:playlistID', async (req, res) => {
 
 router.get('/getAllTracks', async (req, res) => {
     try{
-        db.all('SELECT tracks.id, tracks.name, tracks.author AS author, tracks.img  FROM tracks', (err, tracks) => {
+        db.all('SELECT tracks.id, tracks.name AS name, artists.name AS author, tracks.img  FROM tracks INNER JOIN artists ON tracks.author = artists.id', (err, tracks) => {
+            if(err) console.log('getAllTracks BD error: ', err)
             return res.status(200).json({tracks: tracks})
         })
     }catch(error){
