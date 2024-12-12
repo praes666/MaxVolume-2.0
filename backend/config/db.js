@@ -45,9 +45,7 @@ db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS artists (
         id INTEGER PRIMARY KEY, 
         name TEXT,
-        img TEXT,
-        background_img TEXT,
-        subscribers INTEGER
+        img TEXT
         )`)
 
     db.run(`CREATE TABLE IF NOT EXISTS subscribes (

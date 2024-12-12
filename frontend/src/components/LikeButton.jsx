@@ -11,7 +11,7 @@ export default function LikeButton({ trackInfoId }){
     const likeRequest = async () => {
         try{
             const token = localStorage.getItem('token')
-            if(token != null){
+            if(token != null && trackInfoId != null){
                 await axios.post(`http://localhost:5000/music/likeManager/${trackInfoId}`, {token})
                 await getLikedTracks(setLiked)
             }
@@ -22,17 +22,13 @@ export default function LikeButton({ trackInfoId }){
 
     useEffect(() => {
         setIsLiked(liked.some((like) => like.id === trackInfoId))
-    }, [liked])
+    }, [liked, trackInfoId])
 
     return(
         isLiked ?
         <FaHeart className='hoverIcons' onClick={() => likeRequest()}/>
         :
         <FaRegHeart className='hoverIcons' onClick={() => likeRequest()}/>
-        // liked.some((like) => like.id === trackInfoId) ?
-        // <FaHeart className='hoverIcons' onClick={() => likeRequest()}/>
-        // :
-        // <FaRegHeart className='hoverIcons' onClick={() => likeRequest()}/>
     )
 
 }

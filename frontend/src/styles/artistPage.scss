@@ -1,3 +1,5 @@
+$otstupInfoTop: 80%;
+
 .artistInfo{
     width: 100%;
     display: flex;
@@ -5,13 +7,24 @@
 }
 
 .artistTopInfo{
+    img{
+        border-radius: 50%;
+        height: $otstupInfoTop;
+    }
+    div{
+        height: $otstupInfoTop;
+        display: flex;
+        flex-direction: column;
+    }
+    
     width: 100%;
     height: 250px;
-    border: 1px solid red
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .artistTrackInfo{
     width: 100%;
     height: 1000px;
-    border: 1px solid aqua;
 }

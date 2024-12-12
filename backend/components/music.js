@@ -48,7 +48,7 @@ router.get('/getTracksFromPlaylist/:playlistID', async (req, res) => {
 
 router.get('/getAllTracks', async (req, res) => {
     try{
-        db.all('SELECT tracks.id, tracks.name AS name, artists.name AS author, tracks.img  FROM tracks INNER JOIN artists ON tracks.author = artists.id', (err, tracks) => {
+        db.all('SELECT tracks.id, tracks.name AS name, artists.name AS author, tracks.img  FROM tracks JOIN artists ON tracks.author = artists.id', (err, tracks) => {
             if(err) console.log('getAllTracks BD error: ', err)
             return res.status(200).json({tracks: tracks})
         })
@@ -69,7 +69,7 @@ router.get('/tracks/:trackID', async (req, res) => {
     }
 })
 
-router.post('/likeManager/:likeID', async(req, res) => {
+router.post('/likeManager/:likeID', async (req, res) => {
     const {token} = req.body
     try{
         db.get(`SELECT * FROM liked WHERE user_id = ${jwt.decode(token, JWS_SECRET).id} AND track_id = ${req.params.likeID}`, (err, info) => {
@@ -87,7 +87,28 @@ router.post('/likeManager/:likeID', async(req, res) => {
     }
 })
 
+router.get('/getArtistData/:artistName', async (req, res) => {
+    try{
+        db.get(`SELECT * FROM artists WHERE name = ?`, [req.params.artistName], (err, artistInfo) => {
+            if(err) console.log('artistInfo error: ', err)
+            if(artistInfo){
+                db.get(`SELECT COUNT(*) AS subs FROM subscribes WHERE artist_id = ?`, [artistInfo.id], (err, subs) => {
+                    if(err) console.log('artist subs error: ', err)
+                    db.all(`SELECT tracks.id, tracks.name AS name, artists.name AS author, tracks.img  FROM tracks JOIN artists ON tracks.author = artists.id WHERE artists.name = ?`, [req.params.artistName], (err, tracks) => {
+                        if(err) console.log('artist tracks error: ', err)
+                        return res.status(201).json({artistInfo: artistInfo, subs: subs, tracks: tracks})
+                    })
+                })
+            }
+            else return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
+        })
 
+
+    }catch(error){
+        console.log('get Artist Tracks error: ', error)
+        return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
 
 
 module.exports = router

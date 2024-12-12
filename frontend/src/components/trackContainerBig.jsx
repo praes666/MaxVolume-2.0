@@ -2,13 +2,14 @@ import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
 import { CiCircleMore } from "react-icons/ci";
 import { useState } from 'react'
 import { usePlayer } from "./PlayerContent";
+import { Link } from 'react-router-dom';
 import LikeButton from "./LikeButton";
 import '../styles/TrackContainerBig.css'
 
 export default function TrackContainerBig({ trackInfo, queue }){
     const [onImg, setOnImg] = useState(false)
-    const { setCurrentTrackF, liked } = usePlayer()
-    
+    const { setCurrentTrackF } = usePlayer()
+
     return(
         <div className="trackContainerBig">
             <div className="trackImgBig" onMouseEnter={() => setOnImg(true)} onMouseLeave={() => setOnImg(false)}>
@@ -27,9 +28,9 @@ export default function TrackContainerBig({ trackInfo, queue }){
                 <button className='trackNameBig'>
                     <p className="trackNameBig dots">{trackInfo.name}</p>
                 </button>
-                <button className='trackAuthorBig'>
+                <Link className='trackAuthorBig' to={'/artist/' + trackInfo.author}>
                     <p className="dots">{trackInfo.author}</p>
-                </button>
+                </Link>
             </div>
         </div>
     )
