@@ -30,7 +30,7 @@ export default function palyListpage(){
 
     return(
         <div className="centered">
-            <div className="likedTracks">
+            <div className="trackContainerBigHolder">
                 {playlists.length > 0 ? playlists.map(playlist => {
                     return (<PlaylistCard key={playlist.id} name={playlist.name} img={playlist.img} playlist={playlist} onClickFunc={setOpenPlaylist}/>)
                 })

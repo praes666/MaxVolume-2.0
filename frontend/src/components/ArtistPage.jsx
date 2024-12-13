@@ -19,6 +19,17 @@ export default function ArtistPage(){
         }
     }
     
+    const subToArtist = async () => {
+        try{
+            const token = localStorage.getItem('token')
+            if(token){
+                await axios.post('http://localhost:5000/music/subToArtist', {token, artistData})
+            }
+        }catch(error){
+            console.log('subToArtist error: ', error)
+        }
+    }
+
     useEffect(() => {
         getArtistInfo()
     }, [])
@@ -39,6 +50,9 @@ export default function ArtistPage(){
                                 ' подписчик' : ' подписчика'
                             }
                         </p>
+                        <div onClick={subToArtist}>
+                            <h4>ПОДПИСАТЬСЯ</h4>
+                        </div>
                     </div>
                 </div>
                 <div className='artistTrackInfo'>

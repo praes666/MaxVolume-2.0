@@ -12,6 +12,21 @@ $otstupInfoTop: 80%;
         height: $otstupInfoTop;
     }
     div{
+        div{
+            width: 200px;
+            height: 40px;
+            background-color: #2f2f2f;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 45%;
+            
+            bottom: 0;
+        }
+        div:hover{
+            cursor: pointer;
+            background-color: rgba(100, 100, 100, 0.5);
+        } 
         height: $otstupInfoTop;
         display: flex;
         flex-direction: column;

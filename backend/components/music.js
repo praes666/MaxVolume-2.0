@@ -110,5 +110,17 @@ router.get('/getArtistData/:artistName', async (req, res) => {
     }
 })
 
+router.post('/subToArtist', async (req, res) => {
+    const {token, artistData} = req.body
+    try{
+        db.run('INSERT INTO subscribes (user_id, artist_id) VALUES (?, ?)', [jwt.decode(token, JWS_SECRET).id, artistData.artistInfo.id], (err, feedback) => {
+            if(err) console.log('subToArtist db error: ', err)
+            return res.status(201)
+        })
+    }catch(error){
+        console.log('subToArtist error: ', error)
+        return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
 
 module.exports = router
