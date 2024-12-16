@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import axios from 'axios'
-import TrackContainerBig from './trackContainerBig'
-import '../styles/artistPage.scss'
+import TrackContainerBig from '../components/trackContainerBig'
+import '../../styles/artistPage.scss'
 
 export default function ArtistPage(){
     const { artistName } = useParams()
     const [artistData, setArtistData] = useState()
+    const [subs, setSubs] = useState(0)
     const [isSub, setIsSub] = useState(null)
 
     const getArtistData = async () => {
@@ -25,8 +26,8 @@ export default function ArtistPage(){
             const token = localStorage.getItem('token')
             if(token){
                 const response = await axios.post('http://localhost:5000/music/getSubStatus', {token, artistData})
-                console.log(response.data)
                 setIsSub(response.data.isSub)
+                setSubs(response.data.subs.subs)
             }
         }catch(error){
             console.log('getSubStatus error: ', error)
@@ -64,11 +65,11 @@ export default function ArtistPage(){
                     <div>
                         <h1>{artistData?.artistInfo.name}</h1>
                         <p>
-                            {artistData?.subs.subs}
-                            {artistData?.subs.subs%10 == 0 || artistData?.subs.subs%10 > 5?
+                            {subs}
+                            {subs%10 == 0 || subs%10 > 5?
                                 ' подписчиков'
                                 :
-                                artistData?.subs.subs%10 == 1 ?
+                                subs%10 == 1 ?
                                 ' подписчик' : ' подписчика'
                             }
                         </p>

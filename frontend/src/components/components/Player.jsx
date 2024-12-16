@@ -1,17 +1,14 @@
 import { MdSkipPrevious } from "react-icons/md"
 import { MdSkipNext } from "react-icons/md"
 import { IoPause, IoPlay, IoRepeat, IoShuffle, IoVolumeHigh } from "react-icons/io5";
-import { FaHeart } from "react-icons/fa6"
-// import { FaRegHeart } from "react-icons/fa6"
 import { useState, useRef, useEffect }from 'react'
 import { IconContext } from "react-icons"
-import { usePlayer } from "./PlayerContent"
-import trackFileRequest from "./trackFileRequest";
-
-import '../styles/player.css'
-
-import logo from '../img/Kraken_logo.jpeg'
+import { usePlayer } from "../scripts/PlayerContent"
+import trackFileRequest from "../scripts/trackFileRequest";
 import LikeButton from "./LikeButton";
+import '../../styles/player.css'
+
+import logo from '../../img/Kraken_logo.jpeg'
 
 export default function Player(){
     const { currentTrack, prevTrack, nextTrack } = usePlayer()

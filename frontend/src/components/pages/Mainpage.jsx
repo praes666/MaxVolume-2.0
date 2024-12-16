@@ -1,9 +1,9 @@
 import axios from 'axios'
-import add from '../img/svo.jpg'
-import '../styles/mainpage.css'
+import add from '../../img/bebra.png'
+import '../../styles/mainpage.css'
 import { useEffect, useState } from 'react'
 
-import TrackContainerBig from './trackContainerBig'
+import TrackContainerBig from '../components/trackContainerBig'
 
 export default function Mainpage(){
     const [allTracks, setAllTracks] = useState([])

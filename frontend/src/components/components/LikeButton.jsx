@@ -1,7 +1,7 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
-import { usePlayer } from "./PlayerContent";
+import { usePlayer } from "../scripts/PlayerContent";
 import axios from 'axios'
-import getLikedTracks from './getLikedTracks'
+import getLikedTracks from '../scripts/getLikedTracks'
 import { useEffect, useState } from "react";
 
 export default function LikeButton({ trackInfoId }){

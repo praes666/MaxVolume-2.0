@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
-import tokenCheck from './tokenCheck'
-import getLikedTracks from './getLikedTracks'
-
-import Header from './Header'
-import Mainpage from './Mainpage'
-import LikedTracks from './likedTracks'
-import Player from './Player'
-import PalyListpage from './Playlistspage'
-import ArtistPage from './ArtistPage'
 import { useEffect } from 'react'
-import { usePlayer } from './PlayerContent'
+import { usePlayer } from './scripts/PlayerContent'
+
+import Header from './components/Header'
+import Mainpage from './pages/Mainpage'
+import LikedTracks from './pages/likedTracks'
+import Player from './components/Player'
+import PalyListpage from './pages/Playlistspage'
+import ArtistPage from './pages/ArtistPage'
+
+import tokenCheck from './scripts/tokenCheck'
+import getLikedTracks from './scripts/getLikedTracks'
 
 export default function App(){
     const { setLiked } = usePlayer()

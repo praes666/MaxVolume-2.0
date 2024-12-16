@@ -1,10 +1,10 @@
 import { IoPlayCircleOutline, IoPauseCircleOutline } from "react-icons/io5";
 import { CiCircleMore } from "react-icons/ci";
 import { useState } from 'react'
-import { usePlayer } from "./PlayerContent";
+import { usePlayer } from "../scripts/PlayerContent";
 import { Link } from 'react-router-dom';
 import LikeButton from "./LikeButton";
-import '../styles/TrackContainerBig.css'
+import '../../styles/TrackContainerBig.css'
 
 export default function TrackContainerBig({ trackInfo, queue }){
     const [onImg, setOnImg] = useState(false)

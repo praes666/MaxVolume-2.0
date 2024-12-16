@@ -1,5 +1,5 @@
-import { usePlayer } from './PlayerContent'
-import TrackContainerBig from './trackContainerBig'
+import { usePlayer } from '../scripts/PlayerContent'
+import TrackContainerBig from '../components/trackContainerBig'
 
 export default function LikedTracks(){
     const { liked } = usePlayer()

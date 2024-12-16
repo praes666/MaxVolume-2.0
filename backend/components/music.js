@@ -93,12 +93,9 @@ router.get('/getArtistData/:artistName', async (req, res) => {
         db.get(`SELECT * FROM artists WHERE name = ?`, [req.params.artistName], (err, artistInfo) => {
             if(err) console.log('artistInfo error: ', err)
             if(artistInfo){
-                db.get(`SELECT COUNT(*) AS subs FROM subscribes WHERE artist_id = ?`, [artistInfo.id], (err, subs) => {
-                    if(err) console.log('artist subs error: ', err)
-                    db.all(`SELECT tracks.id, tracks.name AS name, artists.name AS author, tracks.img  FROM tracks JOIN artists ON tracks.author = artists.id WHERE artists.name = ?`, [req.params.artistName], (err, tracks) => {
-                        if(err) console.log('artist tracks error: ', err)
-                        return res.status(201).json({artistInfo: artistInfo, subs: subs, tracks: tracks})
-                    })
+                db.all(`SELECT tracks.id, tracks.name AS name, artists.name AS author, tracks.img  FROM tracks JOIN artists ON tracks.author = artists.id WHERE artists.name = ?`, [req.params.artistName], (err, tracks) => {
+                    if(err) console.log('artist tracks error: ', err)
+                    return res.status(201).json({artistInfo: artistInfo, tracks: tracks})
                 })
             }
             else return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
@@ -138,15 +135,20 @@ router.post('/getSubStatus', async (req, res) => {
     const {token, artistData} = req.body
     try{
         db.get('SELECT * FROM subscribes WHERE user_id = ? AND artist_id = ?', [jwt.decode(token, JWS_SECRET).id, artistData.artistInfo.id], (err, feedback) => {
-            if(err) console.log('subToArtist db error: ', err)
-            if(feedback){
-                return res.status(201).json({isSub: true})
-            }else return res.status(201).json({isSub: false})
+            db.get(`SELECT COUNT(*) AS subs FROM subscribes WHERE artist_id = ?`, [artistData.artistInfo.id], (err, subs) => {
+                if(err) console.log('subToArtist db error: ', err)
+                if(feedback){
+                    return res.status(201).json({isSub: true, subs: subs})
+                }else return res.status(201).json({isSub: false, subs: subs})
+            })
         })
+        
     }catch(error){
         console.log('subToArtist error: ', error)
         return res.status(500).json({message: 'Ошибка сервера'})
     }
 })
+
+// router.post('/')
 
 module.exports = router

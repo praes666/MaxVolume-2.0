@@ -1,8 +1,9 @@
 import { CiCircleMore } from "react-icons/ci";
-import { usePlayer } from "./PlayerContent";
-import { Link } from 'react-router-dom';
+import { usePlayer } from "../scripts/PlayerContent";
 import LikeButton from "./LikeButton";
-import '../styles/TrackContainerSmall.css'
+import '../../styles/TrackContainerSmall.css'
+
+import { Link } from 'react-router-dom';
 
 export default function TrackContainerSmall({ trackInfo, position, queue }){
     const { setCurrentTrackF } = usePlayer()

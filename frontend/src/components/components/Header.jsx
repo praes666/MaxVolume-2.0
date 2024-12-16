@@ -1,13 +1,13 @@
 import { IoSearch } from "react-icons/io5"
-import logo from '../img/Kraken_logo.jpeg'
-
 import { useState } from 'react'
 import { Link } from "react-router-dom"
 
-import '../styles/header.css'
+import logo from '../../img/Kraken_logo.jpeg'
+
+import '../../styles/header.css'
 
 import Auth from './Auth'
-import tokenCheck from './tokenCheck'
+import tokenCheck from '../scripts/tokenCheck'
 import ProfileDropdown from "./profileDropdown"
 
 export default function Header() {

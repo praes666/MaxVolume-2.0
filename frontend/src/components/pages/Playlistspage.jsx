@@ -1,9 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-import PlaylistCard from "./playlistCard"
-import PlaylistAbsoluteInv from "./playlistAbsoluteInv"
-import '../styles/playlists.css'
+import PlaylistCard from "../components/playlistCard"
+import PlaylistAbsoluteInv from "../components/playlistAbsoluteInv"
+import '../../styles/playlists.css'
 
 export default function palyListpage(){
     const [playlists, setPlaylists] = useState([])
