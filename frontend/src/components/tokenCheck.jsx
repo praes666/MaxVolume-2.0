@@ -12,7 +12,7 @@ export default async function tokenCheck(){
             return true
         }
         else{
-            if(window.location.href !== 'http://localhost:5173/'){
+            if(window.location.href === 'http://localhost:5173/likes' || window.location.href === 'http://localhost:5173/playlists'){
                 window.location.replace('/') 
                 alert('Вы не можете находиться тут, будучи не авторизованными. Вы были перенаправленны на главную страницу')
             }

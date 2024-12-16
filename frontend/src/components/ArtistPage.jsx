@@ -7,32 +7,54 @@ import '../styles/artistPage.scss'
 export default function ArtistPage(){
     const { artistName } = useParams()
     const [artistData, setArtistData] = useState()
+    const [isSub, setIsSub] = useState(null)
 
-    const getArtistInfo = async () => {
+    const getArtistData = async () => {
         try{
             if(artistName){
                 const response = await axios.get(`http://localhost:5000/music/getArtistData/${artistName}`)
                 setArtistData(response.data)
             }
         }catch(error){
-            console.log('getArtistInfo error: ', error)
+            console.log('getArtistData error: ', error)
         }
     }
     
-    const subToArtist = async () => {
+    const getSubStatus = async () => {
         try{
             const token = localStorage.getItem('token')
             if(token){
-                await axios.post('http://localhost:5000/music/subToArtist', {token, artistData})
+                const response = await axios.post('http://localhost:5000/music/getSubStatus', {token, artistData})
+                console.log(response.data)
+                setIsSub(response.data.isSub)
             }
         }catch(error){
-            console.log('subToArtist error: ', error)
+            console.log('getSubStatus error: ', error)
+        }
+    }
+    
+    const subArtistManager = async () => {
+        try{
+            const token = localStorage.getItem('token')
+            if(token){
+                await axios.post('http://localhost:5000/music/subArtistManager', {token, artistData})
+                getSubStatus()
+            }
+            else alert('Для подписки на артиста необходимо авторизоваться')
+        }catch(error){
+            console.log('subArtistManager error: ', error)
         }
     }
 
     useEffect(() => {
-        getArtistInfo()
+        getArtistData()
     }, [])
+
+    useEffect(() => {
+        if(artistData){
+            getSubStatus()
+        }
+    }, [artistData])
 
     return(
         <div className="centered">
@@ -50,8 +72,8 @@ export default function ArtistPage(){
                                 ' подписчик' : ' подписчика'
                             }
                         </p>
-                        <div onClick={subToArtist}>
-                            <h4>ПОДПИСАТЬСЯ</h4>
+                        <div onClick={subArtistManager}>
+                            <h4>{isSub ? 'ВЫ ПОДПИСАНЫ' : 'ПОДПИСАТЬСЯ'}</h4>
                         </div>
                     </div>
                 </div>

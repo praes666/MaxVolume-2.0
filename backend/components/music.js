@@ -8,6 +8,7 @@ const db = require('../config/db')
 const secret = require('../JWT_SECRET.json');
 const { get } = require('http');
 const { log } = require('console');
+const { route } = require('./auth');
 const JWS_SECRET = secret.JWT_SECRET
 
 router.post('/getliked', async (req, res) => {
@@ -110,12 +111,37 @@ router.get('/getArtistData/:artistName', async (req, res) => {
     }
 })
 
-router.post('/subToArtist', async (req, res) => {
+router.post('/subArtistManager', async (req, res) => {
     const {token, artistData} = req.body
     try{
-        db.run('INSERT INTO subscribes (user_id, artist_id) VALUES (?, ?)', [jwt.decode(token, JWS_SECRET).id, artistData.artistInfo.id], (err, feedback) => {
+        db.get('SELECT * FROM subscribes WHERE user_id = ? AND artist_id = ?', [jwt.decode(token, JWS_SECRET).id, artistData.artistInfo.id], (err, feedback) => {
             if(err) console.log('subToArtist db error: ', err)
-            return res.status(201)
+            if(feedback){
+                db.run('DELETE FROM subscribes WHERE user_id = ? AND artist_id = ?', [jwt.decode(token, JWS_SECRET).id, artistData.artistInfo.id], (err, feedback) => {
+                    if(err) console.log('unSub of', artistData.artistInfo.id, 'by', jwt.decode(token, JWS_SECRET).id, 'error: ', err) 
+                })
+            }
+            else{
+                db.run('INSERT INTO subscribes (user_id, artist_id) VALUES (?, ?)', [jwt.decode(token, JWS_SECRET).id, artistData.artistInfo.id], (err, feedback) => {
+                    if(err) console.log('subscribe by', jwt.decode(token, JWS_SECRET).id, 'to', artistData.artistInfo.id, 'error: ', err)
+                })
+            }
+            return res.status(201).json()
+        })
+    }catch(error){
+        console.log('subToArtist error: ', error)
+        return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
+
+router.post('/getSubStatus', async (req, res) => {
+    const {token, artistData} = req.body
+    try{
+        db.get('SELECT * FROM subscribes WHERE user_id = ? AND artist_id = ?', [jwt.decode(token, JWS_SECRET).id, artistData.artistInfo.id], (err, feedback) => {
+            if(err) console.log('subToArtist db error: ', err)
+            if(feedback){
+                return res.status(201).json({isSub: true})
+            }else return res.status(201).json({isSub: false})
         })
     }catch(error){
         console.log('subToArtist error: ', error)
