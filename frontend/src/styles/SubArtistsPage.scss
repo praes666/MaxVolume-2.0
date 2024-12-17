@@ -1,0 +1,24 @@
+
+
+
+
+.artistMiniCard{
+    img{
+        width: 90%;
+        border-radius: 50%;
+    }
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 240px;
+    gap: 5px;
+    border-radius: 10px;
+}

@@ -93,7 +93,7 @@ export default function Player(){
 
     return(
         <div className="inv">
-            <div className='centered' style={{height: '100%'}}>
+            <div className='centered' style={{height: '100%', alignContent: 'center'}}>
                 <div className="player">
                 <IconContext.Provider value={{className: "playerIcons" }}>
                     <div className="side_button">

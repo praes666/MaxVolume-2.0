@@ -80,11 +80,11 @@ export default function ArtistPage(){
                 </div>
                 <div className='artistTrackInfo'>
                     <h1>Все треки этого исполнителя:</h1>
-                    <div className='trackContainerBigHolder'>
+                    <div className='midToLeftInfo'>
                         {artistData?.tracks.length > 0 ? artistData.tracks.map(track => {
                                 return <TrackContainerBig key={track.id} trackInfo={track} queue={artistData.tracks}/>
                             }):
-                            <div className='trackContainerBigHolder'>
+                            <div className='midToLeftInfo'>
                                 <h1>У этого исполнителя пока нет треков (странно, зачем тогда эта страница нужна)</h1>
                             </div>
                         }

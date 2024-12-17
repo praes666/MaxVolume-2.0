@@ -6,7 +6,8 @@ export default function LikedTracks(){
 
     return(
         <div className='centered'>
-            <div className='trackContainerBigHolder'>
+            <h1>Ваши лайкнутые треки:</h1>
+            <div className='midToLeftInfo'>
                 {liked.length > 0 ? liked.map(trackInfo => {
                     return(<TrackContainerBig key={trackInfo.id} trackInfo={trackInfo} queue={liked}/>)
                 })

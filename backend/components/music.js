@@ -149,6 +149,16 @@ router.post('/getSubStatus', async (req, res) => {
     }
 })
 
-// router.post('/')
+router.post('/getSubArtists', async (req, res) => {
+    const {token} = req.body
+    try{
+        db.all('SELECT artists.id, artists.name, artists.img FROM artists JOIN subscribes ON subscribes.artist_id = artists.id WHERE user_id = ?', [jwt.decode(token, JWS_SECRET).id], (err, artists) => {
+            if(err) console.log('getSubArtists BD error: ', err)
+            return res.status(201).json({artists: artists})
+        })
+    }catch(error){
+        console.log('gewtAll error: ', error)
+    }
+})
 
 module.exports = router

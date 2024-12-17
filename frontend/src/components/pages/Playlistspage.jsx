@@ -30,13 +30,14 @@ export default function palyListpage(){
 
     return(
         <div className="centered">
-            <div className="trackContainerBigHolder">
+            <h1>Ваши плейлист:</h1>
+            <div className="midToLeftInfo">
                 {playlists.length > 0 ? playlists.map(playlist => {
                     return (<PlaylistCard key={playlist.id} name={playlist.name} img={playlist.img} playlist={playlist} onClickFunc={setOpenPlaylist}/>)
                 })
                 :
-                <h1>ПУСТО</h1>
-            }
+                <h1>У вас ещё не созданно ни одного плейлиста</h1>
+                }
             {openPlaylist ? 
                 <PlaylistAbsoluteInv playlist={openPlaylist} playlistFunc={setOpenPlaylist}/>        
                 :

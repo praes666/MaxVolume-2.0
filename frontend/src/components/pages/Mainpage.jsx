@@ -24,11 +24,11 @@ export default function Mainpage(){
                     <img src={add} alt=""/>
                 </div>
             <h1>Все доступные треки, на данный момент:</h1>
-            <div className='trackContainerBigHolder'>
+            <div className='midToLeftInfo'>
                 {allTracks.length > 0 ? allTracks.map(track => {
                     return(<TrackContainerBig key={track.id} trackInfo={track} queue={allTracks}/>)
                 }):
-                <div className='trackContainerBigHolder'>
+                <div className='midToLeftInfo'>
                     <h1>ХЗ ТУТ НИЧЁ НЕТ, НО ДОЛЖНО БЫТЬ</h1>
                 </div>
                 }
