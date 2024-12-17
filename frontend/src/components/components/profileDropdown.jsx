@@ -17,10 +17,10 @@ export default function profileDropdown(){
     return(
         <div className="dropdown">
             <IconContext.Provider value={{className: "profileDropIcons"}}>
-                <Link>
+                {/* <Link>
                     <BsPersonFill />
                     <p>{JSON.parse(atob(localStorage.getItem('token').split('.')[1])).login}</p>
-                </Link>
+                </Link> */}
                 <Link to='/likes'>
                         <FaHeart/>
                         <p>Лайки</p>

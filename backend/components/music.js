@@ -23,6 +23,22 @@ router.post('/getliked', async (req, res) => {
     }
 })
 
+router.post('/createPlaylist', async (req, res) => {
+    const {token, name, img} = req.body
+    try{
+        if(name && img){
+            db.run('INSERT INTO playlists(name, img, creator_id) VALUES(?, ?, ?)', [name, img, jwt.decode(token, JWS_SECRET).id], (err, info) => {
+                if(err) console.log('createPlaylist BD error: ', err)
+                return res.status(201).json({message: 'Плейлист успешно создан'})
+            })
+        }
+        
+    }catch(error){
+        console.log('createPlaylist error: ', error)
+        return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
+
 router.post('/getplaylists', async (req, res) => {
     const {token} = req.body
     try{

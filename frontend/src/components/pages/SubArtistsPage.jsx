@@ -7,7 +7,6 @@ export default function SubArtistsPage(){
     const [artists, setArtists] = useState([])
 
     const getSubArtists = async () => {
-
         try{
             const token = localStorage.getItem('token')
             if(token != null){
@@ -28,6 +27,7 @@ export default function SubArtistsPage(){
 
     return(
         <div className='centered'>
+            <h1>Ваши подписки:</h1>
             <div className='midToLeftInfo'>
                 {artists.length > 0 ? artists.map(artist => {
                     return (<ArtistMiniCard key={artist.id} artistData={artist}/>)

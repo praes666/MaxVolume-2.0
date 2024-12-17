@@ -1,13 +1,15 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-
+import PlaylistCreate from "../components/playlistCreate"
 import PlaylistCard from "../components/playlistCard"
 import PlaylistAbsoluteInv from "../components/playlistAbsoluteInv"
-import '../../styles/playlists.css'
+import { FaPlus } from "react-icons/fa";
+import '../../styles/playlists.scss'
 
 export default function palyListpage(){
     const [playlists, setPlaylists] = useState([])
     const [openPlaylist, setOpenPlaylist] = useState(null)
+    const [playlistCreating, setPlaylistCreating] = useState(false)
 
     const getPlaylists = async () => {
         try{
@@ -30,20 +32,30 @@ export default function palyListpage(){
 
     return(
         <div className="centered">
-            <h1>Ваши плейлист:</h1>
-            <div className="midToLeftInfo">
-                {playlists.length > 0 ? playlists.map(playlist => {
-                    return (<PlaylistCard key={playlist.id} name={playlist.name} img={playlist.img} playlist={playlist} onClickFunc={setOpenPlaylist}/>)
-                })
-                :
-                <h1>У вас ещё не созданно ни одного плейлиста</h1>
-                }
-            {openPlaylist ? 
-                <PlaylistAbsoluteInv playlist={openPlaylist} playlistFunc={setOpenPlaylist}/>        
-                :
-                <div></div>
-            }
-            </div>
+            <div className="playlistPageTopInfo">
+                <h1>Ваши плейлист:</h1>
+                    <div className="addPlaylistButton" onClick={() => setPlaylistCreating(true)}>
+                        <FaPlus style={{color: 'white'}}/>
+                    </div>
+                </div>
+                <div className="midToLeftInfo">
+                    {playlists.length > 0 ? playlists.map(playlist => {
+                        return (<PlaylistCard key={playlist.id} name={playlist.name} img={playlist.img} playlist={playlist} onClickFunc={setOpenPlaylist}/>)
+                    })
+                    :
+                    <h1>У вас ещё не созданно ни одного плейлиста</h1>
+                    }
+                    {openPlaylist ? 
+                        <PlaylistAbsoluteInv playlist={openPlaylist} playlistFunc={setOpenPlaylist}/>        
+                        :
+                        <div></div>
+                    }
+                    {playlistCreating ? 
+                        <PlaylistCreate closeFunction={setPlaylistCreating}/>
+                        :
+                        <div></div>
+                    }
+                </div>
         </div>
     )
 }
