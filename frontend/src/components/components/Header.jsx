@@ -21,9 +21,9 @@ export default function Header() {
     return(
 		<div className="head_back">
 			<div className="header centered">
-				<button  className="logo mybutton">
+				{/* <button  className="logo mybutton">
 					<img src={logo}/>
-				</button>
+				</button> */}
 				<Link to='/'>
 					<button className="head_button_left mybutton">
 						<p>Главная</p>

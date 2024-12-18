@@ -15,6 +15,7 @@ export default function ArtistPage(){
             if(artistName){
                 const response = await axios.get(`http://localhost:5000/music/getArtistData/${artistName}`)
                 setArtistData(response.data)
+                setSubs(response.data.subs.subs)
             }
         }catch(error){
             console.log('getArtistData error: ', error)

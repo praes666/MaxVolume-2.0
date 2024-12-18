@@ -8,7 +8,7 @@ import trackFileRequest from "../scripts/trackFileRequest";
 import LikeButton from "./LikeButton";
 import '../../styles/player.css'
 
-import logo from '../../img/Kraken_logo.jpeg'
+import emptyPlayer from '../../img/emptyPlayer.jpg'
 
 export default function Player(){
     const { currentTrack, prevTrack, nextTrack } = usePlayer()
@@ -41,9 +41,11 @@ export default function Player(){
     }
     
     const playerPlay = () => {
-        audioRef.current.volume = (Math.pow(0.5, 1.5)/5).toFixed(2)
-        audioRef.current.play()
-        setPlaying(true)
+        if(currentTrack != null){
+            audioRef.current.volume = (Math.pow(0.5, 1.5)/5).toFixed(2)
+            audioRef.current.play()
+            setPlaying(true)
+        }
     }
     const playerPause = () => {
         audioRef.current.pause()
@@ -133,7 +135,7 @@ export default function Player(){
                         }
                         <div className="trackinfo">
                         <LikeButton trackInfoId={currentTrack ? currentTrack.id : null}/>
-                            <img src={currentTrack?.img || logo} alt=""/>
+                            <img src={currentTrack?.img || emptyPlayer} alt=""/>
                             <div className='ti_text'>
                                 <p className='track_name dots'>{currentTrack?.name || 'Название'}</p>
                                 <p className='track_author dots'>{currentTrack?.author || 'Исполнитель'}</p>

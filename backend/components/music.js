@@ -52,6 +52,19 @@ router.post('/getplaylists', async (req, res) => {
     }
 })
 
+router.post('/addToPlaylist', async (req, res) => {
+    const {trackID, playlistID} = req.body
+    try{
+        db.all('INSERT INTO playlisttracks(playlist_id, track_id) VALUES (?, ?)', [playlistID, trackID], (err, info) => {
+            if (err) return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})
+            return res.status(201).json({message: 'Всё гуд'})
+        })
+    }catch(error){
+        console.log('addToPlaylist error: ', error)
+        return res.status(500).json({message: 'Ошибка сервера'})
+    }
+})
+
 router.get('/getTracksFromPlaylist/:playlistID', async (req, res) => {
     try{
         db.all('SELECT tracks.id AS id, tracks.name, artists.name AS author, tracks.img FROM playlisttracks JOIN tracks ON playlisttracks.track_id = tracks.id JOIN artists ON tracks.author = artists.id WHERE playlisttracks.playlist_id = ?', [req.params.playlistID], (err, tracks) => {
@@ -109,9 +122,12 @@ router.get('/getArtistData/:artistName', async (req, res) => {
         db.get(`SELECT * FROM artists WHERE name = ?`, [req.params.artistName], (err, artistInfo) => {
             if(err) console.log('artistInfo error: ', err)
             if(artistInfo){
-                db.all(`SELECT tracks.id, tracks.name AS name, artists.name AS author, tracks.img  FROM tracks JOIN artists ON tracks.author = artists.id WHERE artists.name = ?`, [req.params.artistName], (err, tracks) => {
-                    if(err) console.log('artist tracks error: ', err)
-                    return res.status(201).json({artistInfo: artistInfo, tracks: tracks})
+                db.get(`SELECT COUNT(*) AS subs FROM subscribes WHERE artist_id = ?`, [artistInfo.id], (err, subs) => {
+                    if(err) console.log('artistInfo subs error: ', err)
+                    db.all(`SELECT tracks.id, tracks.name AS name, artists.name AS author, tracks.img  FROM tracks JOIN artists ON tracks.author = artists.id WHERE artists.name = ?`, [req.params.artistName], (err, tracks) => {
+                        if(err) console.log('artist tracks error: ', err)
+                        return res.status(201).json({artistInfo: artistInfo, subs: subs, tracks: tracks})
+                })
                 })
             }
             else return res.status(404).json({message: 'Ошибка обработки запроса на сервере'})

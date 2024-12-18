@@ -1,5 +1,5 @@
 .playlistInv{
-    position: absolute;
+    position: fixed;
     z-index: 98;
     display: flex;
     width: 100%;
@@ -98,7 +98,7 @@
         border-radius: 5px;
         color: #ffffff;
     }
-    position: absolute;
+    position: fixed;
     z-index: 98;
     display: flex;
     width: 100%;

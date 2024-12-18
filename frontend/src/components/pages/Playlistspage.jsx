@@ -17,9 +17,6 @@ export default function palyListpage(){
             if(token != null){
                 const response = await axios.post('http://localhost:5000/music/getplaylists', {token})
                 setPlaylists(response.data.playlists)
-            }else{
-                window.location.replace('/') 
-                alert('Вы не можете находиться тут, будучи не авторизованными. Вы были перенаправленны на главную страницу')
             }
         }catch(error){
             console.log('getPlaylists error', error)
