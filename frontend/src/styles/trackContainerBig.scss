@@ -51,7 +51,7 @@
 
 .trackInfoBig{
     width: 100%;
-    height: 50px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -126,7 +126,8 @@ button{
 
 .playlistMicro{
     img{
-        width: 20%;
+        width: 30px;
+        height: 30px;
     }
 
     display: flex;

@@ -33,7 +33,7 @@ export default function Auth(){
         try{
             const response = await axios.post('http://localhost:5000/auth/login', loginData)
             clearAuth()
-            if(response.status == 201){
+            if(response.status == 201 && response.data.token != undefined){
                 localStorage.setItem('token', response.data.token)
                 location.reload();
             } 

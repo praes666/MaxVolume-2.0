@@ -30,15 +30,17 @@ export default function Header() {
 					</button>                
 				</Link>
 				<button className="head_button_left mybutton">
-					<p>Новинки</p>
+					<p>*Скоро*</p>
 				</button>
 				<div className="search">
 					<input type="text" placeholder="Поиск..."/>
 					<IoSearch className="searchButton"/>
-				</div>    
-				<button className="head_button_right mybutton" onClick={tokenCheck}>
-					<p>Библиотека</p>
-				</button>
+				</div> 
+				<Link to='/likes'>
+					<button className="head_button_right mybutton" onClick={tokenCheck}>
+						<p>Библиотека</p>
+					</button>
+				</Link>   
 				{localStorage.getItem('token') != null ? (
 					<button className="head_button_right profile mybutton" onClick={profile_click}>
 					<p>{JSON.parse(atob(localStorage.getItem('token').split('.')[1])).login}</p>
