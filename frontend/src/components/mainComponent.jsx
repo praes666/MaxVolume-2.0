@@ -9,6 +9,7 @@ import Player from './components/Player'
 import PalyListpage from './pages/Playlistspage'
 import ArtistPage from './pages/ArtistPage'
 import SubArtistsPage from './pages/SubArtistsPage'
+import Page404 from './pages/404'
 
 import tokenCheck from './scripts/tokenCheck'
 import getLikedTracks from './scripts/getLikedTracks'
@@ -30,6 +31,7 @@ export default function App(){
                     <Route path='/playlists' element={<PalyListpage/>}/>
                     <Route path='/artist/:artistName' element={<ArtistPage/>}/>
                     <Route path='/subscribes' element={<SubArtistsPage/>}/>
+                    <Route path='*' element={<Page404/>}/>
                 </Routes>
             <Player/>
         </Router>
